@@ -141,6 +141,7 @@ const D={
     unreadChoices:{on:true,th:3,win:6000},
     skippedContent:{on:true,minR:8},
     copyPaste:{on:true},
+    gibberish:{on:true,minChars:30,minVowelRatio:.22,maxAvgWordLen:12},
     noise:{on:true,sus:10000}
   },
   onV:null,debug:false
@@ -153,7 +154,8 @@ const S=[
   {id:'speedSection',lbl:'Troppo veloce'},
   {id:'unreadChoices',lbl:'Scelte non lette'},
   {id:'skippedContent',lbl:'Contenuto saltato'},
-  {id:'copyPaste',lbl:'Copia/Incolla'}
+  {id:'copyPaste',lbl:'Copia/Incolla'},
+  {id:'gibberish',lbl:'Testo insensato'}
 ];
 
 const IC={
@@ -164,11 +166,12 @@ const IC={
   unreadChoices:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
   skippedContent:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/><line x1="5" y1="21" x2="19" y2="21"/></svg>',
   copyPaste:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+  gibberish:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h13"/><line x1="19" y1="15" x2="22" y2="19"/><line x1="22" y1="15" x2="19" y2="19"/></svg>',
   noise:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
   lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
 };
 
-const LB={compulsiveClick:'Click compulsivo',compulsiveKeys:'Digitazione compulsiva',videoSkip:'Video saltato',speedSection:'Troppo veloce',unreadChoices:'Scelte non lette',skippedContent:'Contenuto saltato',copyPaste:'Copia/Incolla',noise:'Rumore eccessivo'};
+const LB={compulsiveClick:'Click compulsivo',compulsiveKeys:'Digitazione compulsiva',videoSkip:'Video saltato',speedSection:'Troppo veloce',unreadChoices:'Scelte non lette',skippedContent:'Contenuto saltato',copyPaste:'Copia/Incolla',gibberish:'Testo insensato',noise:'Rumore eccessivo'};
 
 function _log(m){if(!_c.debug)return;console.log('[SS]',m);var e=document.getElementById('ss-console');if(e){e.textContent+='['+new Date().toLocaleTimeString('it-IT')+'] '+m+'\n';e.scrollTop=e.scrollHeight;}}
 function _mg(t,s){var o=Object.assign({},t);for(var k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=_mg(o[k]||{},s[k]);else o[k]=s[k];}return o;}
@@ -397,6 +400,52 @@ function _d8(){if(!_c.det.copyPaste||!_c.det.copyPaste.on)return;
   _log('Sensore: Copia/Incolla');
 }
 
+/* 9. Gibberish / Testo insensato */
+let _gibFired={};
+function _d9(){
+  var c=_c.det.gibberish;if(!c||!c.on)return;
+  // Monitor all textareas and inputs with data-salastudio-writing or class .warea
+  function _checkGibberish(el){
+    var id=el.getAttribute('data-salastudio-section')||el.name||'field';
+    var txt=el.value.replace(/[^a-zA-ZàèéìòùÀÈÉÌÒÙ]/g,'').toLowerCase();
+    if(txt.length<c.minChars)return;
+    // Vowel ratio (Italian normal: ~45%, gibberish: <20%)
+    var vowels=txt.replace(/[^aeiouàèéìòù]/g,'').length;
+    var ratio=vowels/txt.length;
+    // Average word length
+    var words=el.value.trim().split(/\s+/).filter(function(w){return w.length>0;});
+    var avgLen=words.length>0?words.reduce(function(a,w){return a+w.length;},0)/words.length:0;
+    // Trigram repetition check (gibberish has unusual patterns)
+    var trigrams={},triTotal=0,triUnique=0;
+    for(var i=0;i<txt.length-2;i++){var tri=txt.substr(i,3);trigrams[tri]=(trigrams[tri]||0)+1;triTotal++;}
+    triUnique=Object.keys(trigrams).length;
+    var triRatio=triTotal>0?triUnique/triTotal:1;
+
+    var isGibberish=false;
+    // Low vowel ratio is the strongest signal
+    if(ratio<c.minVowelRatio&&avgLen>6)isGibberish=true;
+    // Very long average words
+    if(avgLen>c.maxAvgWordLen)isGibberish=true;
+    // High trigram uniqueness + low vowels (random chars)
+    if(ratio<0.28&&triRatio>0.85&&words.length>=3)isGibberish=true;
+
+    if(isGibberish&&!_gibFired[id]){
+      _gibFired[id]=true;
+      _add('gibberish');
+      _log('Testo insensato in "'+id+'": vocali='+Math.round(ratio*100)+'%, lunghezza media='+avgLen.toFixed(1)+', trigram='+Math.round(triRatio*100)+'%');
+      // Reset after 30s so it can fire again if they keep typing gibberish
+      setTimeout(function(){_gibFired[id]=false;},30000);
+    }
+  }
+  document.addEventListener('input',function(e){
+    if(_lk)return;
+    if(e.target.tagName==='TEXTAREA'||(e.target.tagName==='INPUT'&&e.target.type==='text')){
+      _checkGibberish(e.target);
+    }
+  });
+  _log('Sensore: Testo insensato (vocali<'+Math.round(c.minVowelRatio*100)+'%, maxLenMedia='+c.maxAvgWordLen+')');
+}
+
 /* ═══ NOISE (Bottega) ═══ */
 function _micOn(){
   if(_nOn||!navigator.mediaDevices)return;
@@ -472,9 +521,9 @@ return{
   version:'2.2.0',
   init:function(cfg){
     if(_ok)return;_c=_mg(D,cfg||{});_t0=Date.now();_ok=true;
-    _css();_build();_d1();_d2();_d3();_d4();_d5();_d6();_d7();_d8();
+    _css();_build();_d1();_d2();_d3();_d4();_d5();_d6();_d7();_d8();_d9();
     if(_c.autoMic&&_c.det.noise.on)setTimeout(function(){_micOn();},500);
-    _log('SalaStudio v2.2 — '+Object.keys(_c.det).filter(function(k){return _c.det[k].on;}).length+'/8 sensori'+(_c.autoMic?' — autoMic':''));
+    _log('SalaStudio v2.2 — '+Object.keys(_c.det).filter(function(k){return _c.det[k].on;}).length+'/9 sensori'+(_c.autoMic?' — autoMic':''));
   },
   sectionEnter:function(id){if(_ok){_sE[id]=Date.now();}},
   sectionComplete:function(id){if(!_ok||_lk)return;var c=_c.det.speedSection;if(!c.on)return;var t=_sE[id];if(!t)return;var s=(Date.now()-t)/1000;if(s<c.minS)_add('speedSection');else _log('Sezione "'+id+'" OK ('+s.toFixed(1)+'s)');},
