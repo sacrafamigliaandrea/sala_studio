@@ -3,516 +3,732 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SalaStudio v2 — Test Environment</title>
+<title>SalaStudio — Simulatore</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: #f5f3ee; color: #2a2a2a; }
-  .test-env { max-width: 820px; margin: 0 auto; padding: 2rem 2rem 2rem 82px; }
-  .test-env h1 { font-size: 1.45rem; margin-bottom: .4rem; }
-  .test-env p.subtitle { color: #666; margin-bottom: 2rem; font-size: .92rem; }
-  .test-section { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 1.4rem; margin-bottom: 1.1rem; }
-  .test-section h2 { font-size: 1.05rem; margin-bottom: .7rem; color: #1a3a5c; }
-  .test-section p { font-size: .88rem; line-height: 1.6; margin-bottom: .5rem; color: #444; }
-  .test-btn { display: inline-block; padding: .5rem 1.1rem; border: 1px solid #1a3a5c; background: #fff; color: #1a3a5c; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: .83rem; margin: .25rem .25rem .25rem 0; transition: background .2s, color .2s; }
-  .test-btn:hover { background: #1a3a5c; color: #fff; }
-  .quiz-option { display: block; width: 100%; text-align: left; padding: .55rem .9rem; margin-bottom: .35rem; border: 1px solid #ccc; background: #fafafa; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: .85rem; transition: border-color .2s; }
-  .quiz-option:hover { border-color: #1a3a5c; }
-  .long-content p { margin-bottom: .7rem; }
-  .console-log { background: #1e1e1e; color: #a5d6a7; font-family: 'Courier New', monospace; font-size: .75rem; padding: .8rem; border-radius: 8px; max-height: 180px; overflow-y: auto; margin-top: .8rem; white-space: pre-wrap; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:#f4f2ed;color:#2a2a2a}
+
+  /* ── LAYOUT ── */
+  .sim-page{margin-left:64px;padding:2rem 2.5rem;max-width:900px}
+  .sim-page h1{font-size:1.5rem;color:#1a3a5c;margin-bottom:.3rem}
+  .sim-page .lead{font-size:.88rem;color:#777;margin-bottom:2rem}
+
+  /* ── CARDS ── */
+  .card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1.6rem;margin-bottom:1.4rem;position:relative}
+  .card-label{position:absolute;top:-10px;left:16px;background:#1a3a5c;color:#fff;font-size:.65rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:2px 10px;border-radius:4px}
+  .card h2{font-size:1.05rem;color:#1a3a5c;margin-bottom:.6rem;margin-top:.3rem}
+  .card p{font-size:.87rem;line-height:1.65;color:#4a4a4a;margin-bottom:.6rem}
+
+  /* ── VIDEO ── */
+  .video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:8px;overflow:hidden;background:#111;margin-bottom:.8rem}
+  .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+  /* ── READING ── */
+  .reading-block{background:#faf9f6;border-left:3px solid #1a3a5c;padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:.6rem 0;font-size:.85rem;line-height:1.75;color:#3a3a3a;max-height:280px;overflow-y:auto}
+
+  /* ── QUIZ ── */
+  .quiz-q{font-weight:600;font-size:.9rem;margin-bottom:.6rem;color:#1a3a5c}
+  .quiz-opt{display:block;width:100%;text-align:left;padding:.6rem 1rem;margin-bottom:.35rem;border:1.5px solid #ddd;background:#fafafa;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.84rem;transition:all .2s}
+  .quiz-opt:hover{border-color:#1a3a5c;background:#f0f4f8}
+  .quiz-opt.selected{border-color:#1a3a5c;background:#e8eef5;font-weight:500}
+
+  /* ── WRITING ── */
+  .writing-area{width:100%;min-height:140px;padding:.8rem 1rem;border:1.5px solid #ddd;border-radius:8px;font-family:inherit;font-size:.88rem;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s}
+  .writing-area:focus{border-color:#1a3a5c}
+  .writing-meta{display:flex;justify-content:space-between;margin-top:.4rem;font-size:.75rem;color:#999}
+
+  /* ── BUTTONS ── */
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:.5rem 1.1rem;border:1.5px solid #1a3a5c;background:#fff;color:#1a3a5c;border-radius:7px;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:500;transition:all .2s}
+  .btn:hover{background:#1a3a5c;color:#fff}
+  .btn-sm{padding:.35rem .8rem;font-size:.78rem}
+  .btn-primary{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
+  .btn-primary:hover{background:#14304d}
+
+  /* ── CONSOLE ── */
+  .console{background:#1a1e24;color:#81c784;font-family:'Courier New',monospace;font-size:.72rem;padding:.7rem .9rem;border-radius:8px;max-height:160px;overflow-y:auto;white-space:pre-wrap;margin-top:.5rem}
 </style>
 </head>
 <body>
 
-<div class="test-env">
-  <h1>SalaStudio v2 — Ambiente di Test</h1>
-  <p class="subtitle">Toolbar a sinistra con 7 sensori. Testa ogni violazione — la barra laterale reagisce in tempo reale.</p>
+<!-- ════════════════════════════════════════════════════════
+     SIMULATOR PAGE — realistic content for testing SalaStudio
+     ════════════════════════════════════════════════════════ -->
+<div class="sim-page">
+  <h1>Simulatore SalaStudio</h1>
+  <p class="lead">Pagina di test con contenuti reali dall'ecosistema SacraFamiglia education. La toolbar a sinistra monitora il tuo comportamento.</p>
 
-  <div class="test-section" data-salastudio-section="click-test">
-    <h2>1. Click Compulsivo</h2>
-    <p>8+ click in 5 secondi.</p>
-    <button class="test-btn">A</button><button class="test-btn">B</button><button class="test-btn">C</button><button class="test-btn">D</button><button class="test-btn">E</button>
+  <!-- ── VIDEO (YouTube) ── -->
+  <div class="card" data-salastudio-section="video">
+    <span class="card-label">Sensore Video</span>
+    <h2>La Cittadinanza Digitale</h2>
+    <p>Guarda attentamente il video. Il sistema rileva se salti parti del contenuto o chiudi il video prima della fine.</p>
+    <div class="video-wrap">
+      <iframe id="yt-player" src="https://www.youtube.com/embed/YSKlMCe3-cQ?rel=0&playsinline=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
   </div>
 
-  <div class="test-section" data-salastudio-section="key-test">
-    <h2>2. Digitazione Compulsiva</h2>
-    <p>Tasti a caso fuori da campi di testo (12+ in 3s). Dentro il campo sotto non conta.</p>
-    <input type="text" placeholder="Campo legittimo..." style="width:100%;padding:.45rem;border:1px solid #ccc;border-radius:6px;font-family:inherit;margin-top:.3rem;">
+  <!-- ── LETTURA ── -->
+  <div class="card" data-salastudio-section="lettura" data-salastudio-readable="true">
+    <span class="card-label">Sensore Lettura</span>
+    <h2>La Privacy Online: perché è importante</h2>
+    <p>Leggi con attenzione il testo seguente. Il sistema verifica che tu abbia dedicato tempo sufficiente alla lettura.</p>
+    <div class="reading-block">
+      <p>Ogni volta che utilizzi un'applicazione o un social network, lasci dietro di te una serie di tracce digitali. Queste tracce, chiamate "impronte digitali", includono informazioni personali come il tuo nome, la tua posizione, le tue preferenze e persino le tue abitudini quotidiane.</p>
+      <p>Le aziende raccolgono questi dati per diversi scopi: personalizzare la pubblicità, migliorare i propri servizi, ma talvolta anche per rivenderli a terze parti. Il Regolamento Generale sulla Protezione dei Dati (GDPR), in vigore nell'Unione Europea dal 2018, stabilisce regole precise su come le aziende possono raccogliere e utilizzare i dati personali dei cittadini.</p>
+      <p>Tra i diritti fondamentali previsti dal GDPR ci sono: il diritto di accesso (sapere quali dati vengono raccolti), il diritto di rettifica (correggere dati errati), il diritto alla cancellazione (il cosiddetto "diritto all'oblio") e il diritto alla portabilità (trasferire i propri dati da un servizio all'altro).</p>
+      <p>Per proteggere la tua privacy online puoi adottare alcune buone pratiche: usa password complesse e diverse per ogni servizio, attiva l'autenticazione a due fattori, controlla regolarmente le impostazioni sulla privacy dei tuoi account, non condividere informazioni sensibili su canali non sicuri e presta attenzione ai permessi richiesti dalle app che installi.</p>
+      <p>Ricorda: la privacy non è solo un diritto legale, ma uno strumento di protezione personale. Essere consapevoli di come i propri dati vengono utilizzati è il primo passo per diventare cittadini digitali responsabili.</p>
+    </div>
   </div>
 
-  <div class="test-section" data-salastudio-section="speed-test">
-    <h2>3. Sezione Troppo Veloce</h2>
-    <p>Minimo 10 secondi. Premi "Completa" subito per attivare.</p>
-    <button class="test-btn" onclick="SalaStudio.sectionComplete('speed-test')">Completa Sezione</button>
+  <!-- ── QUIZ ── -->
+  <div class="card" data-salastudio-section="quiz">
+    <span class="card-label">Sensore Scelte</span>
+    <h2>Verifica di comprensione</h2>
+    <p>Rispondi alle domande basandoti sul testo appena letto. Non avere fretta: il sistema rileva selezioni troppo rapide.</p>
+
+    <div style="margin-bottom:1.2rem">
+      <p class="quiz-q">1. Cosa sono le "impronte digitali"?</p>
+      <button class="quiz-opt" data-salastudio-choice>A) I segni lasciati dalle dita sullo schermo del telefono</button>
+      <button class="quiz-opt" data-salastudio-choice>B) Le tracce di informazioni personali che lasciamo online</button>
+      <button class="quiz-opt" data-salastudio-choice>C) Un tipo di virus informatico che ruba le password</button>
+      <button class="quiz-opt" data-salastudio-choice>D) Il codice identificativo di ogni dispositivo elettronico</button>
+    </div>
+
+    <div style="margin-bottom:1.2rem">
+      <p class="quiz-q">2. Quale diritto permette di eliminare i propri dati da un servizio?</p>
+      <button class="quiz-opt" data-salastudio-choice>A) Diritto di accesso</button>
+      <button class="quiz-opt" data-salastudio-choice>B) Diritto alla portabilità</button>
+      <button class="quiz-opt" data-salastudio-choice>C) Diritto all'oblio</button>
+      <button class="quiz-opt" data-salastudio-choice>D) Diritto di rettifica</button>
+    </div>
+
+    <div>
+      <p class="quiz-q">3. Qual è una buona pratica per proteggere la propria privacy?</p>
+      <button class="quiz-opt" data-salastudio-choice>A) Usare la stessa password ovunque per non dimenticarla</button>
+      <button class="quiz-opt" data-salastudio-choice>B) Attivare l'autenticazione a due fattori</button>
+      <button class="quiz-opt" data-salastudio-choice>C) Condividere la password con un amico fidato</button>
+      <button class="quiz-opt" data-salastudio-choice>D) Disattivare gli aggiornamenti del sistema operativo</button>
+    </div>
   </div>
 
-  <div class="test-section" data-salastudio-section="quiz-test">
-    <h2>4. Scelte Non Lette</h2>
-    <p>3+ selezioni in 6 secondi.</p>
-    <button class="quiz-option" data-salastudio-choice>A) La fotosintesi produce ossigeno</button>
-    <button class="quiz-option" data-salastudio-choice>B) Le piante non hanno bisogno di luce</button>
-    <button class="quiz-option" data-salastudio-choice>C) Il glucosio è un prodotto</button>
-    <button class="quiz-option" data-salastudio-choice>D) L'acqua non è necessaria</button>
-    <button class="quiz-option" data-salastudio-choice>E) La clorofilla assorbe la luce</button>
-    <button class="quiz-option" data-salastudio-choice>F) Il CO2 viene rilasciato</button>
+  <!-- ── SCRITTURA ── -->
+  <div class="card" data-salastudio-section="scrittura">
+    <span class="card-label">Sensore Velocità</span>
+    <h2>Scrittura guidata</h2>
+    <p>Scrivi un breve testo (almeno 60 parole) su questo tema: <strong>"Perché è importante proteggere i propri dati personali online?"</strong></p>
+    <p>Usa le informazioni del testo letto e aggiungi le tue riflessioni personali. Il sistema verifica che dedichi tempo sufficiente alla stesura.</p>
+    <textarea class="writing-area" placeholder="Inizia a scrivere qui..."></textarea>
+    <div class="writing-meta">
+      <span id="word-count">0 parole</span>
+      <button class="btn btn-sm" onclick="SalaStudio.sectionComplete('scrittura')">Consegna</button>
+    </div>
   </div>
 
-  <div class="test-section long-content" data-salastudio-section="scroll-test" data-salastudio-readable="true">
-    <h2>5. Contenuto Saltato (Scroll)</h2>
-    <p>Scorri velocemente in fondo — il sistema rileva se non hai letto.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-    <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore.</p>
-    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+  <!-- ── CLICK AREA ── -->
+  <div class="card" data-salastudio-section="click-test">
+    <span class="card-label">Sensore Click</span>
+    <h2>Esplora le risorse</h2>
+    <p>Naviga tra queste risorse con calma. Cliccando compulsivamente si attiva il sensore.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:.4rem">
+      <button class="btn btn-sm">Articolo 13 GDPR</button>
+      <button class="btn btn-sm">Phishing: cos'è</button>
+      <button class="btn btn-sm">Social engineering</button>
+      <button class="btn btn-sm">Password sicure</button>
+      <button class="btn btn-sm">Cookie e tracciamento</button>
+      <button class="btn btn-sm">Diritto all'oblio</button>
+      <button class="btn btn-sm">Cyberbullismo</button>
+      <button class="btn btn-sm">Sexting e rischi</button>
+    </div>
   </div>
 
-  <div class="test-section" data-salastudio-section="video-test">
-    <h2>6. Video Skip</h2>
-    <p>Simulato (in produzione: <code>SalaStudio.registerYT(player)</code>).</p>
-    <button class="test-btn" onclick="SalaStudio.report('videoSkip')">Simula Skip</button>
-    <button class="test-btn" onclick="SalaStudio.report('videoSkip')">Simula Chiusura Prematura</button>
-  </div>
-
-  <div class="test-section" data-salastudio-section="noise-test">
-    <h2>7. Rumore Ambientale</h2>
-    <p>Attiva il microfono dalla toolbar o dal pulsante. Il VU meter nella sidebar mostra il livello in tempo reale.</p>
-    <button class="test-btn" onclick="SalaStudio.startNoise()">Attiva Microfono</button>
-    <button class="test-btn" onclick="SalaStudio.stopNoise()">Disattiva</button>
-  </div>
-
-  <div class="test-section">
-    <h2>Console</h2>
-    <div id="ss-console" class="console-log">SalaStudio v2.0 — Console attiva\n</div>
-    <button class="test-btn" onclick="document.getElementById('ss-console').textContent=''">Pulisci</button>
-    <button class="test-btn" onclick="location.reload()">Reset</button>
+  <!-- ── CONSOLE ── -->
+  <div class="card">
+    <h2>Console di debug</h2>
+    <div id="ss-console" class="console">SalaStudio — console attiva\n</div>
+    <div style="margin-top:.5rem;display:flex;gap:6px">
+      <button class="btn btn-sm" onclick="document.getElementById('ss-console').textContent=''">Pulisci</button>
+      <button class="btn btn-sm" onclick="location.reload()">Reset</button>
+      <button class="btn btn-sm" onclick="console.log(SalaStudio.getState())">Stato (F12)</button>
+    </div>
   </div>
 </div>
 
-<!-- ============================================================
-     SALASTUDIO v2.0
+<!-- ════════════════════════════════════════════════════════
+     SALASTUDIO v2.1
      Sistema di monitoraggio comportamentale studenti
      Ecosistema SacraFamiglia education
-     Toolbar laterale sinistra — 7 sensori
-     ============================================================ -->
+
+     Toolbar sidebar sinistra con 7 sensori
+     Noise meter stile Bottega (avg/1.2, barre storia, 3 fasce)
+     ════════════════════════════════════════════════════════ -->
 <script>
 const SalaStudio = (function() {
   'use strict';
 
-  let _cfg = {}, _violations = [], _startTime = 0, _locked = false, _init = false;
-  let _clickTs = [], _keyTs = [], _choiceTs = [], _sectionEnter = {}, _scrollTrack = {};
-  let _ytPlayers = [], _ytLast = {};
-  let _audioCtx = null, _analyser = null, _micStream = null, _noiseActive = false, _noiseRAF = null, _noiseAboveStart = 0, _noiseLevel = 0, _noiseHistory = [], _avgNoise = 0;
-  let _sidebar = null, _overlay = null, _sensorEls = {};
+  /* ═══ STATE ═══ */
+  let _cfg={}, _viol=[], _t0=0, _locked=false, _ready=false;
+  let _clickTs=[], _keyTs=[], _choiceTs=[], _secEnter={}, _scrollTk={};
+  let _ytPlayers=[], _ytLast={};
 
-  const DEFAULTS = {
-    pin: '1234', minTotalMinutes: 15, violationsForTimeLock: 3, violationsForAbsoluteLock: 5,
-    detections: {
-      compulsiveClick: { enabled: true, threshold: 8, windowMs: 5000 },
-      compulsiveKeys:  { enabled: true, threshold: 12, windowMs: 3000 },
-      videoSkip:       { enabled: true, skipThresholdSec: 10, minWatchPercent: 0.3 },
-      speedSection:    { enabled: true, minSectionSec: 10 },
-      unreadChoices:   { enabled: true, threshold: 3, windowMs: 6000 },
-      skippedContent:  { enabled: true, minReadSec: 5 },
-      noise:           { enabled: true, sustainMs: 10000 }
+  // Noise (Bottega logic)
+  let _audioCtx=null, _analyser=null, _micStream=null;
+  let _noiseOn=false, _noiseRAF=null, _noiseAbove=0;
+  let _noiseLevel=0, _noiseHistory=[], _avgNoise=0;
+
+  let _bar=null, _overlay=null, _sensorEls={};
+
+  /* ═══ DEFAULTS ═══ */
+  const DEF = {
+    pin:'1234', minTotalMin:15, vForTimeLock:3, vForAbsLock:5,
+    detections:{
+      compulsiveClick:{enabled:true,threshold:8,windowMs:5000},
+      compulsiveKeys:{enabled:true,threshold:12,windowMs:3000},
+      videoSkip:{enabled:true,skipSec:10,minWatch:0.3},
+      speedSection:{enabled:true,minSec:10},
+      unreadChoices:{enabled:true,threshold:3,windowMs:6000},
+      skippedContent:{enabled:true,minReadSec:5},
+      noise:{enabled:true,sustainMs:10000}
     },
-    onViolation: null, debug: false
+    onViolation:null, debug:false
   };
 
-  const SENSORS = [
-    { id: 'compulsiveClick', label: 'Click' },
-    { id: 'compulsiveKeys',  label: 'Tastiera' },
-    { id: 'videoSkip',       label: 'Video' },
-    { id: 'speedSection',    label: 'Velocità' },
-    { id: 'unreadChoices',   label: 'Scelte' },
-    { id: 'skippedContent',  label: 'Lettura' },
-    { id: 'noise',           label: 'Silenzio' }
+  const SENS = [
+    {id:'compulsiveClick',label:'Click',icon:'click'},
+    {id:'compulsiveKeys',label:'Tastiera',icon:'keys'},
+    {id:'videoSkip',label:'Video',icon:'video'},
+    {id:'speedSection',label:'Velocità',icon:'speed'},
+    {id:'unreadChoices',label:'Scelte',icon:'eye'},
+    {id:'skippedContent',label:'Lettura',icon:'scroll'},
+    {id:'noise',label:'Silenzio',icon:'mic'}
   ];
 
-  const SVG = {
-    compulsiveClick: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2z"/><path d="M9 9L4.5 4.5"/><path d="M7 13l-3.5 3.5"/><path d="M13 7l3.5-3.5"/></svg>',
-    compulsiveKeys: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg>',
-    videoSkip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,4 15,12 5,20"/><line x1="19" y1="5" x2="19" y2="19"/></svg>',
-    speedSection: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
-    unreadChoices: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
-    skippedContent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/><line x1="5" y1="21" x2="19" y2="21"/></svg>',
-    noise: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
-    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-    logo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>'
+  const ICO = {
+    click:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2z"/><path d="M9 9L4.5 4.5"/><path d="M7 13l-3.5 3.5"/><path d="M13 7l3.5-3.5"/></svg>',
+    keys:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/><path d="M7 16h10"/></svg>',
+    video:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,4 15,12 5,20"/><line x1="19" y1="5" x2="19" y2="19"/></svg>',
+    speed:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
+    eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
+    scroll:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/><line x1="5" y1="21" x2="19" y2="21"/></svg>',
+    mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
+    lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
   };
 
-  const LABELS = {
-    compulsiveClick: 'Click compulsivo', compulsiveKeys: 'Digitazione compulsiva',
-    videoSkip: 'Video saltato', speedSection: 'Sezione troppo veloce',
-    unreadChoices: 'Scelte non lette', skippedContent: 'Contenuto saltato', noise: 'Rumore eccessivo'
+  const LBL = {
+    compulsiveClick:'Click compulsivo',compulsiveKeys:'Digitazione compulsiva',
+    videoSkip:'Video saltato',speedSection:'Troppo veloce',
+    unreadChoices:'Scelte non lette',skippedContent:'Contenuto saltato',noise:'Rumore eccessivo'
   };
 
-  // ── Helpers ──
-  function _log(m) {
-    if (!_cfg.debug) return;
-    console.log('[SalaStudio]', m);
-    var el = document.getElementById('ss-console');
-    if (el) { el.textContent += '[' + new Date().toLocaleTimeString('it-IT') + '] ' + m + '\n'; el.scrollTop = el.scrollHeight; }
+  /* ═══ HELPERS ═══ */
+  function _log(m){
+    if(!_cfg.debug)return;console.log('[SS]',m);
+    var el=document.getElementById('ss-console');
+    if(el){el.textContent+='['+new Date().toLocaleTimeString('it-IT')+'] '+m+'\n';el.scrollTop=el.scrollHeight;}
   }
+  function _mg(t,s){var o=Object.assign({},t);for(var k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=_mg(o[k]||{},s[k]);else o[k]=s[k];}return o;}
 
-  function _merge(t, s) {
-    var o = Object.assign({}, t);
-    for (var k in s) { if (s[k] && typeof s[k] === 'object' && !Array.isArray(s[k])) o[k] = _merge(o[k]||{}, s[k]); else o[k] = s[k]; }
-    return o;
-  }
+  /* ═══ CSS ═══ */
+  function _css(){
+    var s=document.createElement('style');s.id='ss-css';
+    s.textContent=`
+/* ── SIDEBAR ── */
+#ss-bar{position:fixed;left:0;top:0;bottom:0;width:64px;background:linear-gradient(180deg,#1a2332 0%,#151d28 100%);display:flex;flex-direction:column;align-items:center;z-index:99990;font-family:'DM Sans',system-ui,sans-serif;box-shadow:3px 0 18px rgba(0,0,0,.2);transition:width .3s cubic-bezier(.4,0,.2,1);overflow:hidden;user-select:none}
+#ss-bar.ex{width:220px}
 
-  // ── CSS ──
-  function _css() {
-    var s = document.createElement('style'); s.id = 'ss-css';
-    s.textContent = `
-#ss-bar{position:fixed;left:0;top:0;bottom:0;width:62px;background:linear-gradient(180deg,#1a2332 0%,#162029 100%);display:flex;flex-direction:column;align-items:center;z-index:99990;font-family:'DM Sans',system-ui,sans-serif;box-shadow:2px 0 16px rgba(0,0,0,.22);transition:width .28s cubic-bezier(.4,0,.2,1);overflow:hidden;user-select:none}
-#ss-bar.ss-exp{width:174px}
-.ss-logo{width:100%;padding:11px 0 8px;display:flex;flex-direction:column;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;flex-shrink:0;transition:padding .2s}
-.ss-logo svg{width:24px;height:24px;color:#7eb8da;transition:color .2s}
-.ss-logo:hover svg{color:#a8d8f0}
-.ss-logo-txt{font-size:7.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(126,184,218,.7);margin-top:4px;white-space:nowrap}
-.ss-sens-wrap{flex:1;width:100%;display:flex;flex-direction:column;padding:6px 0;gap:1px;overflow-y:auto;overflow-x:hidden}
-.ss-s{display:flex;align-items:center;width:100%;padding:9px 0;position:relative;transition:background .2s}
-.ss-s:hover{background:rgba(255,255,255,.04)}
-.ss-s-iw{width:62px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
-.ss-s svg{width:19px;height:19px;color:#4a6070;transition:color .3s,filter .3s}
-.ss-s.on svg{color:#7eb8da}
-.ss-s.alert svg{color:#e74c3c;filter:drop-shadow(0 0 4px rgba(231,76,60,.4));animation:ss-p 1.2s ease infinite}
-@keyframes ss-p{0%,100%{opacity:1}50%{opacity:.45}}
-.ss-bg{position:absolute;top:0;right:0;background:#e74c3c;color:#fff;font-size:8.5px;font-weight:700;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px;opacity:0;transform:scale(.4);transition:opacity .25s,transform .25s cubic-bezier(.34,1.56,.64,1)}
-.ss-bg.vis{opacity:1;transform:scale(1)}
-.ss-lbl{font-size:11px;color:#7a8f9e;white-space:nowrap;overflow:hidden;opacity:0;transition:opacity .2s;margin-left:2px}
-#ss-bar.ss-exp .ss-lbl{opacity:1}
-.ss-tip{position:absolute;left:66px;top:50%;transform:translateY(-50%);background:#243040;color:#c0d4e0;font-size:10.5px;padding:4px 9px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:99991;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+/* Logo */
+.ss-logo{width:100%;padding:12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;flex-shrink:0}
+.ss-logo svg{width:22px;height:22px;color:#7eb8da;flex-shrink:0}
+.ss-logo-t{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7eb8da;white-space:nowrap;opacity:0;width:0;overflow:hidden;transition:opacity .2s,width .3s}
+#ss-bar.ex .ss-logo-t{opacity:1;width:auto}
+
+/* Sensor rows */
+.ss-sensors{flex:1;width:100%;display:flex;flex-direction:column;padding:8px 0;gap:0;overflow-y:auto;overflow-x:hidden}
+.ss-row{display:flex;align-items:center;width:100%;padding:8px 0;position:relative;transition:background .15s;cursor:default}
+.ss-row:hover{background:rgba(255,255,255,.03)}
+.ss-row-ico{width:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.ss-row svg{width:18px;height:18px;color:#4a6070;transition:color .3s,filter .3s}
+.ss-row.ok svg{color:#7eb8da}
+.ss-row.warn svg{color:#d4a017;filter:drop-shadow(0 0 3px rgba(212,160,23,.3))}
+.ss-row.alert svg{color:#e74c3c;filter:drop-shadow(0 0 4px rgba(231,76,60,.35));animation:ss-pulse 1.2s ease infinite}
+@keyframes ss-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Badge */
+.ss-badge{position:absolute;top:-1px;right:8px;background:#e74c3c;color:#fff;font-size:8px;font-weight:700;min-width:14px;height:14px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 3px;opacity:0;transform:scale(.3);transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+.ss-badge.vis{opacity:1;transform:scale(1)}
+
+/* Label */
+.ss-row-lbl{font-size:11px;color:#7a8f9e;white-space:nowrap;overflow:hidden;opacity:0;transition:opacity .2s .05s;padding-right:8px}
+#ss-bar.ex .ss-row-lbl{opacity:1}
+
+/* Tooltip (collapsed only) */
+.ss-tip{position:absolute;left:70px;top:50%;transform:translateY(-50%);background:#243040;color:#c0d4e0;font-size:10px;padding:3px 8px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s;z-index:99991;box-shadow:0 2px 6px rgba(0,0,0,.2)}
 .ss-tip::before{content:'';position:absolute;left:-4px;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:#243040}
-#ss-bar:not(.ss-exp) .ss-s:hover .ss-tip{opacity:1}
-
-/* Noise VU */
-.ss-vu{display:flex;align-items:center;gap:2px;margin-left:2px}
-.ss-vu-bar{width:3px;height:18px;background:#2a3a4a;border-radius:1.5px;overflow:hidden;position:relative}
-.ss-vu-fill{position:absolute;bottom:0;left:0;right:0;border-radius:1.5px;transition:height .08s linear,background .3s}
-.ss-vu-fill.ss-green{background:#27ae60}
-.ss-vu-fill.ss-amber{background:#d4a017}
-.ss-vu-fill.ss-red{background:#e74c3c}
+#ss-bar:not(.ex) .ss-row:hover .ss-tip{opacity:1}
 
 /* Separator */
-.ss-sep{height:1px;background:rgba(255,255,255,.06);margin:4px 12px;flex-shrink:0}
+.ss-sep{height:1px;background:rgba(255,255,255,.05);margin:4px 14px;flex-shrink:0}
 
-/* Footer */
-.ss-ft{width:100%;padding:10px 0 8px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;flex-shrink:0}
-.ss-dot{width:7px;height:7px;border-radius:50%;background:#27ae60;margin-bottom:3px;transition:background .3s,box-shadow .3s}
-.ss-dot.w{background:#f39c12;box-shadow:0 0 6px rgba(243,156,18,.4)}
-.ss-dot.d{background:#e74c3c;box-shadow:0 0 6px rgba(231,76,60,.4)}
-.ss-ft-t{font-size:7.5px;color:#4a6070;letter-spacing:.5px;text-transform:uppercase}
+/* ── NOISE PANEL (expanded view, Bottega style) ── */
+.ss-noise-panel{width:100%;padding:0 14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s,opacity .2s,padding .3s}
+#ss-bar.ex .ss-noise-panel{max-height:180px;opacity:1;padding:6px 14px 10px}
+.ss-noise-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#546a7b;margin-bottom:6px}
+.ss-noise-chart{display:flex;align-items:flex-end;gap:2px;height:40px;background:rgba(255,255,255,.03);border-radius:4px;padding:4px 4px 0;margin-bottom:6px}
+.ss-noise-bar{width:100%;min-width:2px;border-radius:1px 1px 0 0;transition:height .1s,background .2s}
+.ss-noise-stats{display:flex;align-items:center;justify-content:space-between}
+.ss-noise-pct{font-size:16px;font-weight:700;color:#7eb8da;font-variant-numeric:tabular-nums;transition:color .3s}
+.ss-noise-pct.amber{color:#d4a017}
+.ss-noise-pct.red{color:#e74c3c}
+.ss-noise-avg{font-size:9px;color:#546a7b}
+.ss-noise-badge{font-size:8.5px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(39,174,96,.15);color:#27ae60;transition:all .3s}
+.ss-noise-badge.amber{background:rgba(212,160,23,.15);color:#d4a017}
+.ss-noise-badge.red{background:rgba(231,76,60,.15);color:#e74c3c}
 
-/* Overlay */
+/* ── SESSION TIMER ── */
+.ss-timer-wrap{width:100%;padding:0 14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s,opacity .2s}
+#ss-bar.ex .ss-timer-wrap{max-height:60px;opacity:1;padding:6px 14px}
+.ss-timer-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#546a7b;margin-bottom:2px}
+.ss-timer{font-size:20px;font-weight:700;color:#ccd6dd;font-variant-numeric:tabular-nums;letter-spacing:1px}
+
+/* ── BEHAVIOR SUMMARY ── */
+.ss-behav-wrap{width:100%;padding:0 14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s,opacity .2s}
+#ss-bar.ex .ss-behav-wrap{max-height:80px;opacity:1;padding:6px 14px}
+.ss-behav-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#546a7b;margin-bottom:2px}
+.ss-behav-text{font-size:11px;color:#7a8f9e;font-style:italic}
+.ss-behav-text.warn{color:#d4a017;font-style:normal;font-weight:500}
+
+/* ── FOOTER ── */
+.ss-ft{width:100%;padding:10px 0 8px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.ss-dot{width:8px;height:8px;border-radius:50%;background:#27ae60;margin-bottom:2px;transition:all .3s}
+.ss-dot.w{background:#d4a017;box-shadow:0 0 6px rgba(212,160,23,.35)}
+.ss-dot.d{background:#e74c3c;box-shadow:0 0 6px rgba(231,76,60,.35)}
+.ss-ft-t{font-size:7px;color:#4a6070;letter-spacing:.5px;text-transform:uppercase}
+
+/* mic activate button */
+.ss-mic-btn{display:flex;align-items:center;justify-content:center;width:36px;height:20px;border-radius:10px;border:1px solid rgba(126,184,218,.3);background:transparent;cursor:pointer;margin-top:2px;transition:all .2s}
+.ss-mic-btn:hover{border-color:rgba(126,184,218,.6)}
+.ss-mic-btn.on{background:rgba(39,174,96,.2);border-color:rgba(39,174,96,.4)}
+.ss-mic-btn svg{width:12px;height:12px;color:#546a7b}
+.ss-mic-btn.on svg{color:#27ae60}
+
+/* ── OVERLAY ── */
 #ss-ov{position:fixed;inset:0;z-index:99999;background:rgba(18,22,28,.95);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:ss-fi .4s ease}
 @keyframes ss-fi{0%{opacity:0}100%{opacity:1}}
-.ss-lc{background:#fff;border-radius:14px;padding:2rem 1.8rem;max-width:390px;width:88%;text-align:center;font-family:'DM Sans',system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.ss-lc{background:#fff;border-radius:14px;padding:2rem;max-width:400px;width:88%;text-align:center;font-family:'DM Sans',system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .ss-lc svg{width:44px;height:44px;color:#c0392b;margin-bottom:.8rem}
 .ss-lc h2{font-size:1.1rem;color:#1a1a1a;margin-bottom:.35rem}
 .ss-lc p{font-size:.82rem;color:#666;margin-bottom:.9rem;line-height:1.5}
 .ss-lc-sum{text-align:left;background:#fdf2f2;border-radius:8px;padding:.6rem .8rem;margin-bottom:.9rem;font-size:.76rem;color:#7a1a1a;line-height:1.8}
 .ss-lc input{width:100%;padding:.55rem;border:1.5px solid #ddd;border-radius:8px;text-align:center;font-family:inherit;font-size:1rem;letter-spacing:.4em;margin-bottom:.6rem;outline:none;transition:border-color .2s}
 .ss-lc input:focus{border-color:#1a3a5c}
-.ss-lc input.ss-wr{border-color:#c0392b;animation:ss-sh .4s ease}
+.ss-lc input.bad{border-color:#c0392b;animation:ss-sh .4s}
 .ss-lc button{width:100%;padding:.55rem;border:none;border-radius:8px;background:#1a3a5c;color:#fff;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s}
 .ss-lc button:hover{background:#14304d}
 @keyframes ss-sh{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
-    `;
+`;
     document.head.appendChild(s);
   }
 
-  // ── Sidebar ──
-  function _buildBar() {
-    _sidebar = document.createElement('div');
-    _sidebar.id = 'ss-bar';
+  /* ═══ BUILD SIDEBAR ═══ */
+  function _buildBar(){
+    _bar=document.createElement('div');_bar.id='ss-bar';
 
-    var logo = document.createElement('div');
-    logo.className = 'ss-logo';
-    logo.innerHTML = SVG.logo + '<span class="ss-logo-txt">SalaStudio</span>';
-    logo.addEventListener('click', function() { _sidebar.classList.toggle('ss-exp'); });
-    _sidebar.appendChild(logo);
+    // Logo
+    var logo=document.createElement('div');logo.className='ss-logo';
+    logo.innerHTML=ICO.book+'<span class="ss-logo-t">SalaStudio</span>';
+    logo.onclick=function(){_bar.classList.toggle('ex');};
+    _bar.appendChild(logo);
 
-    var wrap = document.createElement('div');
-    wrap.className = 'ss-sens-wrap';
+    var wrap=document.createElement('div');wrap.className='ss-sensors';
 
-    SENSORS.forEach(function(s, i) {
-      if (!_cfg.detections[s.id] || !_cfg.detections[s.id].enabled) return;
+    SENS.forEach(function(s,i){
+      if(!_cfg.detections[s.id]||!_cfg.detections[s.id].enabled) return;
 
-      var row = document.createElement('div');
-      row.className = 'ss-s on';
-      row.setAttribute('data-sensor', s.id);
-
-      var inner = '<div class="ss-s-iw">' + SVG[s.id] + '<span class="ss-bg" data-bg="' + s.id + '">0</span></div>';
-
-      if (s.id === 'noise') {
-        inner += '<div class="ss-vu"><div class="ss-vu-bar"><div class="ss-vu-fill ss-green" id="ss-nf" style="height:0%"></div></div></div>';
+      // Separator before noise
+      if(s.id==='noise'){
+        var sep=document.createElement('div');sep.className='ss-sep';wrap.appendChild(sep);
       }
 
-      inner += '<span class="ss-lbl">' + s.label + '</span><span class="ss-tip">' + s.label + '</span>';
-      row.innerHTML = inner;
+      var row=document.createElement('div');
+      row.className='ss-row ok';row.setAttribute('data-sid',s.id);
+
+      var inner='<div class="ss-row-ico">'+ICO[s.icon]+'<span class="ss-badge" data-bg="'+s.id+'">0</span></div>';
+      inner+='<span class="ss-row-lbl">'+s.label+'</span>';
+      inner+='<span class="ss-tip">'+s.label+'</span>';
+
+      // Mic activate toggle (collapsed view)
+      if(s.id==='noise'){
+        inner+='<button class="ss-mic-btn" id="ss-mic-toggle" title="Attiva microfono" onclick="event.stopPropagation();SalaStudio.toggleNoise()">'+
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/></svg></button>';
+      }
+
+      row.innerHTML=inner;
       wrap.appendChild(row);
-      _sensorEls[s.id] = row;
+      _sensorEls[s.id]=row;
 
-      // Separatore dopo Video (gruppo "input" vs "comportamento")
-      if (s.id === 'compulsiveKeys') {
-        var sep = document.createElement('div');
-        sep.className = 'ss-sep';
-        wrap.appendChild(sep);
+      // Separator after compulsiveKeys
+      if(s.id==='compulsiveKeys'){
+        var sep2=document.createElement('div');sep2.className='ss-sep';wrap.appendChild(sep2);
       }
-      if (s.id === 'skippedContent') {
-        var sep2 = document.createElement('div');
-        sep2.className = 'ss-sep';
-        wrap.appendChild(sep2);
+      // Separator after skippedContent
+      if(s.id==='skippedContent'){
+        // noise separator handled above
       }
     });
 
-    _sidebar.appendChild(wrap);
+    // Noise panel (Bottega-style, visible when expanded)
+    var nPanel=document.createElement('div');
+    nPanel.className='ss-noise-panel';
+    nPanel.innerHTML=`
+      <div class="ss-noise-title">Livello Rumore</div>
+      <div class="ss-noise-chart" id="ss-nchart"></div>
+      <div class="ss-noise-stats">
+        <div>
+          <span class="ss-noise-pct" id="ss-npct">--%</span><br>
+          <span class="ss-noise-avg" id="ss-navg">Media: --</span>
+        </div>
+        <span class="ss-noise-badge" id="ss-nbadge">Off</span>
+      </div>
+    `;
+    wrap.appendChild(nPanel);
 
-    var ft = document.createElement('div');
-    ft.className = 'ss-ft';
-    ft.innerHTML = '<div class="ss-dot" id="ss-dot"></div><span class="ss-ft-t" id="ss-ft-t">attivo</span>';
-    _sidebar.appendChild(ft);
+    // Timer
+    var timerW=document.createElement('div');
+    timerW.className='ss-timer-wrap';
+    timerW.innerHTML='<div class="ss-sep" style="margin:0 0 6px"></div><div class="ss-timer-title">Sessione</div><div class="ss-timer" id="ss-timer">00:00</div>';
+    wrap.appendChild(timerW);
 
-    document.body.appendChild(_sidebar);
+    // Behavior summary
+    var behW=document.createElement('div');
+    behW.className='ss-behav-wrap';
+    behW.innerHTML='<div class="ss-sep" style="margin:0 0 6px"></div><div class="ss-behav-title">Comportamento</div><div class="ss-behav-text" id="ss-behav">Nessuna segnalazione</div>';
+    wrap.appendChild(behW);
+
+    _bar.appendChild(wrap);
+
+    // Footer
+    var ft=document.createElement('div');ft.className='ss-ft';
+    ft.innerHTML='<div class="ss-dot" id="ss-dot"></div><span class="ss-ft-t" id="ss-ft-t">attivo</span>';
+    _bar.appendChild(ft);
+
+    document.body.appendChild(_bar);
+
+    // Init noise chart bars
+    var chart=document.getElementById('ss-nchart');
+    for(var i=0;i<20;i++){
+      var b=document.createElement('div');b.className='ss-noise-bar';
+      b.style.height='2px';b.style.background='#2a3a4a';
+      chart.appendChild(b);
+    }
+
+    // Timer interval
+    setInterval(function(){
+      if(!_ready)return;
+      var s=Math.floor((Date.now()-_t0)/1000);
+      var m=String(Math.floor(s/60)).padStart(2,'0');
+      var sec=String(s%60).padStart(2,'0');
+      document.getElementById('ss-timer').textContent=m+':'+sec;
+    },1000);
   }
 
-  function _updBar() {
-    var counts = {};
-    _violations.forEach(function(v) { counts[v.type] = (counts[v.type]||0) + 1; });
-    SENSORS.forEach(function(s) {
-      var el = _sensorEls[s.id]; if (!el) return;
-      var bg = el.querySelector('[data-bg]');
-      var c = counts[s.id] || 0;
-      if (c > 0) { bg.textContent = c; bg.classList.add('vis'); el.classList.add('alert'); el.classList.remove('on'); }
-      else { bg.classList.remove('vis'); el.classList.remove('alert'); el.classList.add('on'); }
+  /* ═══ UPDATE SIDEBAR ═══ */
+  function _upd(){
+    var counts={};
+    _viol.forEach(function(v){counts[v.type]=(counts[v.type]||0)+1;});
+
+    SENS.forEach(function(s){
+      var el=_sensorEls[s.id];if(!el)return;
+      var bg=el.querySelector('[data-bg]');
+      var c=counts[s.id]||0;
+      if(c>0){
+        bg.textContent=c;bg.classList.add('vis');
+        el.className='ss-row alert';el.setAttribute('data-sid',s.id);
+      } else {
+        bg.classList.remove('vis');
+        el.className='ss-row ok';el.setAttribute('data-sid',s.id);
+      }
     });
-    var n = _violations.length;
-    var dot = document.getElementById('ss-dot');
-    var txt = document.getElementById('ss-ft-t');
-    if (n === 0) { dot.className = 'ss-dot'; txt.textContent = 'attivo'; }
-    else if (n < _cfg.violationsForTimeLock) { dot.className = 'ss-dot w'; txt.textContent = n + '/' + _cfg.violationsForAbsoluteLock; }
-    else { dot.className = 'ss-dot d'; txt.textContent = n + '/' + _cfg.violationsForAbsoluteLock; }
+
+    var n=_viol.length;
+    var dot=document.getElementById('ss-dot'),txt=document.getElementById('ss-ft-t');
+    var beh=document.getElementById('ss-behav');
+    if(n===0){
+      dot.className='ss-dot';txt.textContent='attivo';
+      beh.className='ss-behav-text';beh.textContent='Nessuna segnalazione';
+    } else if(n<_cfg.vForTimeLock){
+      dot.className='ss-dot w';txt.textContent=n+'/'+_cfg.vForAbsLock;
+      beh.className='ss-behav-text warn';beh.textContent=n+' segnalazion'+(n===1?'e':'i');
+    } else {
+      dot.className='ss-dot d';txt.textContent=n+'/'+_cfg.vForAbsLock;
+      beh.className='ss-behav-text warn';beh.textContent=n+' segnalazioni — attenzione!';
+    }
   }
 
-  // ── Violations ──
-  function _add(type) {
-    if (_locked) return;
-    _violations.push({ type: type, time: Date.now() });
-    _log('VIOLAZIONE: ' + LABELS[type] + ' (' + _violations.length + ')');
-    _updBar();
-    if (_cfg.onViolation) _cfg.onViolation(type, _violations.length);
+  /* ═══ VIOLATIONS ═══ */
+  function _add(type){
+    if(_locked)return;
+    _viol.push({type:type,time:Date.now()});
+    _log('VIOLAZIONE: '+LBL[type]+' ('+_viol.length+')');
+    _upd();
+    if(_cfg.onViolation)_cfg.onViolation(type,_viol.length);
     _chk();
   }
-
-  function _chk() {
-    var el = (Date.now() - _startTime) / 60000, n = _violations.length;
-    if (n >= _cfg.violationsForAbsoluteLock) _lock(n + ' violazioni raggiunte. Attività sospesa.');
-    else if (el < _cfg.minTotalMinutes && n >= _cfg.violationsForTimeLock) _lock(n + ' violazioni in ' + Math.floor(el) + ' min. Rallenta.');
+  function _chk(){
+    var el=(Date.now()-_t0)/60000,n=_viol.length;
+    if(n>=_cfg.vForAbsLock) _lock(n+' violazioni. Attività sospesa.');
+    else if(el<_cfg.minTotalMin&&n>=_cfg.vForTimeLock) _lock(n+' violazioni in '+Math.floor(el)+' min.');
   }
-
-  function _lock(msg) {
-    if (_locked) return;
-    _locked = true; _log('BLOCCO: ' + msg);
-    var counts = {};
-    _violations.forEach(function(v) { counts[v.type] = (counts[v.type]||0) + 1; });
-    var sum = ''; Object.keys(counts).forEach(function(t) { sum += LABELS[t] + ': ' + counts[t] + '<br>'; });
-    _overlay = document.createElement('div'); _overlay.id = 'ss-ov';
-    _overlay.innerHTML = '<div class="ss-lc">' + SVG.lock + '<h2>Attività Sospesa</h2><p>' + msg + '</p><div class="ss-lc-sum">' + sum + '</div><input type="password" id="ss-pin" placeholder="PIN docente" maxlength="8" autocomplete="off"><button id="ss-pb">Sblocca</button></div>';
+  function _lock(msg){
+    if(_locked)return;_locked=true;_log('BLOCCO: '+msg);
+    var counts={};_viol.forEach(function(v){counts[v.type]=(counts[v.type]||0)+1;});
+    var sum='';Object.keys(counts).forEach(function(t){sum+=LBL[t]+': '+counts[t]+'<br>';});
+    _overlay=document.createElement('div');_overlay.id='ss-ov';
+    _overlay.innerHTML='<div class="ss-lc">'+ICO.lock+'<h2>Attività Sospesa</h2><p>'+msg+'</p><div class="ss-lc-sum">'+sum+'</div><input type="password" id="ss-pin" placeholder="PIN docente" maxlength="8" autocomplete="off"><button id="ss-pb">Sblocca</button></div>';
     document.body.appendChild(_overlay);
-    var inp = document.getElementById('ss-pin');
-    document.getElementById('ss-pb').addEventListener('click', function() { _unlock(inp); });
-    inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') _unlock(inp); });
+    var inp=document.getElementById('ss-pin');
+    document.getElementById('ss-pb').onclick=function(){_unlk(inp);};
+    inp.onkeydown=function(e){if(e.key==='Enter')_unlk(inp);};
     inp.focus();
   }
-
-  function _unlock(inp) {
-    if (inp.value === _cfg.pin) {
-      _locked = false; _violations = []; _startTime = Date.now();
-      if (_overlay) { _overlay.remove(); _overlay = null; }
-      _updBar(); _log('SBLOCCATO');
-    } else { inp.classList.add('ss-wr'); inp.value = ''; setTimeout(function() { inp.classList.remove('ss-wr'); }, 400); }
+  function _unlk(inp){
+    if(inp.value===_cfg.pin){
+      _locked=false;_viol=[];_t0=Date.now();
+      if(_overlay){_overlay.remove();_overlay=null;}
+      _upd();_log('SBLOCCATO');
+    } else {inp.classList.add('bad');inp.value='';setTimeout(function(){inp.classList.remove('bad');},400);}
   }
 
-  // ── Detection 1: Click ──
-  function _d1() {
-    var c = _cfg.detections.compulsiveClick; if (!c.enabled) return;
-    document.addEventListener('click', function() {
-      if (_locked) return; var now = Date.now(); _clickTs.push(now);
-      _clickTs = _clickTs.filter(function(t) { return now - t < c.windowMs; });
-      if (_clickTs.length >= c.threshold) { _add('compulsiveClick'); _clickTs = []; }
-    }, true);
-    _log('Sensore: Click (' + c.threshold + '/' + c.windowMs + 'ms)');
+  /* ═══════════════════════════════════════
+     DETECTIONS
+     ═══════════════════════════════════════ */
+
+  // 1. Click
+  function _d1(){
+    var c=_cfg.detections.compulsiveClick;if(!c.enabled)return;
+    document.addEventListener('click',function(){
+      if(_locked)return;var now=Date.now();_clickTs.push(now);
+      _clickTs=_clickTs.filter(function(t){return now-t<c.windowMs;});
+      if(_clickTs.length>=c.threshold){_add('compulsiveClick');_clickTs=[];}
+    },true);
+    _log('Sensore: Click ('+c.threshold+'/'+c.windowMs+'ms)');
   }
 
-  // ── Detection 2: Keys ──
-  function _d2() {
-    var c = _cfg.detections.compulsiveKeys; if (!c.enabled) return;
-    document.addEventListener('keydown', function(e) {
-      if (_locked) return;
-      var tag = e.target.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
-      var now = Date.now(); _keyTs.push(now);
-      _keyTs = _keyTs.filter(function(t) { return now - t < c.windowMs; });
-      if (_keyTs.length >= c.threshold) { _add('compulsiveKeys'); _keyTs = []; }
-    }, true);
-    _log('Sensore: Tastiera (' + c.threshold + '/' + c.windowMs + 'ms)');
+  // 2. Keys
+  function _d2(){
+    var c=_cfg.detections.compulsiveKeys;if(!c.enabled)return;
+    document.addEventListener('keydown',function(e){
+      if(_locked)return;var tag=e.target.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||e.target.isContentEditable)return;
+      var now=Date.now();_keyTs.push(now);
+      _keyTs=_keyTs.filter(function(t){return now-t<c.windowMs;});
+      if(_keyTs.length>=c.threshold){_add('compulsiveKeys');_keyTs=[];}
+    },true);
+    _log('Sensore: Tastiera ('+c.threshold+'/'+c.windowMs+'ms)');
   }
 
-  // ── Detection 3: Video ──
-  function _d3() { if (!_cfg.detections.videoSkip.enabled) return; _log('Sensore: Video (registerYT)'); }
-  function _wyt(player) {
-    var c = _cfg.detections.videoSkip, id = 'y'+Math.random().toString(36).substr(2,4);
-    _ytLast[id] = 0; var dur = 0;
-    var p = setInterval(function() {
-      if (_locked) return;
-      try {
-        var ct = player.getCurrentTime(); if (!dur) dur = player.getDuration();
-        if (_ytLast[id] > 0 && ct - _ytLast[id] > c.skipThresholdSec) _add('videoSkip');
-        _ytLast[id] = ct;
-        var st = player.getPlayerState();
-        if (st === 0 || st === -1) { if (dur > 0 && ct/dur < c.minWatchPercent && ct > 2) _add('videoSkip'); clearInterval(p); }
-      } catch(e) {}
-    }, 2000);
+  // 3. Video
+  function _d3(){if(!_cfg.detections.videoSkip.enabled)return;_log('Sensore: Video (registerYT)');}
+  function _wyt(player){
+    var c=_cfg.detections.videoSkip,id='y'+Math.random().toString(36).substr(2,4);
+    _ytLast[id]=0;var dur=0;
+    var p=setInterval(function(){
+      if(_locked)return;
+      try{
+        var ct=player.getCurrentTime();if(!dur)dur=player.getDuration();
+        if(_ytLast[id]>0&&ct-_ytLast[id]>c.skipSec)_add('videoSkip');
+        _ytLast[id]=ct;
+        var st=player.getPlayerState();
+        if(st===0||st===-1){if(dur>0&&ct/dur<c.minWatch&&ct>2)_add('videoSkip');clearInterval(p);}
+      }catch(e){}
+    },2000);
   }
 
-  // ── Detection 4: Speed ──
-  function _d4() {
-    if (!_cfg.detections.speedSection.enabled) return;
-    document.querySelectorAll('[data-salastudio-section]').forEach(function(el) {
-      var id = el.getAttribute('data-salastudio-section');
-      new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting && !_sectionEnter[id]) { _sectionEnter[id] = Date.now(); } });
-      }, { threshold: 0.3 }).observe(el);
+  // 4. Speed
+  function _d4(){
+    if(!_cfg.detections.speedSection.enabled)return;
+    document.querySelectorAll('[data-salastudio-section]').forEach(function(el){
+      var id=el.getAttribute('data-salastudio-section');
+      new IntersectionObserver(function(ent){
+        ent.forEach(function(e){if(e.isIntersecting&&!_secEnter[id])_secEnter[id]=Date.now();});
+      },{threshold:0.3}).observe(el);
     });
-    _log('Sensore: Velocità (min ' + _cfg.detections.speedSection.minSectionSec + 's)');
+    _log('Sensore: Velocità (min '+_cfg.detections.speedSection.minSec+'s)');
   }
 
-  // ── Detection 5: Choices ──
-  function _d5() {
-    var c = _cfg.detections.unreadChoices; if (!c.enabled) return;
-    document.addEventListener('click', function(e) {
-      if (_locked || !e.target.closest('[data-salastudio-choice]')) return;
-      var now = Date.now(); _choiceTs.push(now);
-      _choiceTs = _choiceTs.filter(function(t) { return now - t < c.windowMs; });
-      if (_choiceTs.length >= c.threshold) { _add('unreadChoices'); _choiceTs = []; }
-    }, true);
-    _log('Sensore: Scelte (' + c.threshold + '/' + c.windowMs + 'ms)');
+  // 5. Choices
+  function _d5(){
+    var c=_cfg.detections.unreadChoices;if(!c.enabled)return;
+    document.addEventListener('click',function(e){
+      if(_locked||!e.target.closest('[data-salastudio-choice]'))return;
+      var now=Date.now();_choiceTs.push(now);
+      _choiceTs=_choiceTs.filter(function(t){return now-t<c.windowMs;});
+      if(_choiceTs.length>=c.threshold){_add('unreadChoices');_choiceTs=[];}
+    },true);
+    _log('Sensore: Scelte ('+c.threshold+'/'+c.windowMs+'ms)');
   }
 
-  // ── Detection 6: Scroll ──
-  function _d6() {
-    var c = _cfg.detections.skippedContent; if (!c.enabled) return;
-    document.querySelectorAll('[data-salastudio-readable]').forEach(function(el) {
-      var id = el.getAttribute('data-salastudio-section') || ('r'+Math.random().toString(36).substr(2,3));
-      _scrollTrack[id] = { entered: 0, done: false };
-      new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting && !_scrollTrack[id].entered) _scrollTrack[id].entered = Date.now(); });
-      }, { threshold: 0.1 }).observe(el);
-      var sn = document.createElement('div'); sn.style.height = '1px'; el.appendChild(sn);
-      new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting && _scrollTrack[id].entered && !_scrollTrack[id].done) {
-            if ((Date.now() - _scrollTrack[id].entered)/1000 < c.minReadSec) _add('skippedContent');
-            _scrollTrack[id].done = true;
+  // 6. Scroll
+  function _d6(){
+    var c=_cfg.detections.skippedContent;if(!c.enabled)return;
+    document.querySelectorAll('[data-salastudio-readable]').forEach(function(el){
+      var id=el.getAttribute('data-salastudio-section')||('r'+Math.random().toString(36).substr(2,3));
+      _scrollTk[id]={entered:0,done:false};
+      new IntersectionObserver(function(ent){
+        ent.forEach(function(e){if(e.isIntersecting&&!_scrollTk[id].entered)_scrollTk[id].entered=Date.now();});
+      },{threshold:0.1}).observe(el);
+      var sn=document.createElement('div');sn.style.height='1px';el.appendChild(sn);
+      new IntersectionObserver(function(ent){
+        ent.forEach(function(e){
+          if(e.isIntersecting&&_scrollTk[id].entered&&!_scrollTk[id].done){
+            if((Date.now()-_scrollTk[id].entered)/1000<c.minReadSec)_add('skippedContent');
+            _scrollTk[id].done=true;
           }
         });
-      }, { threshold: 1.0 }).observe(sn);
+      },{threshold:1.0}).observe(sn);
     });
-    _log('Sensore: Lettura (min ' + c.minReadSec + 's)');
+    _log('Sensore: Lettura (min '+c.minReadSec+'s)');
   }
 
-  // ── Detection 7: Noise ──
-  function _d7() { if (!_cfg.detections.noise.enabled) return; _log('Sensore: Silenzio (soglia 66%, sustain ' + _cfg.detections.noise.sustainMs + 'ms)'); }
+  // 7. Noise (Bottega logic: avg/1.2, 3 color bands, history chart)
+  function _d7(){if(!_cfg.detections.noise.enabled)return;_log('Sensore: Silenzio (soglia 66%, sustain '+_cfg.detections.noise.sustainMs+'ms)');}
 
-  function _noiseStart() {
-    if (_noiseActive || !navigator.mediaDevices) { _log('Microfono non disponibile'); return; }
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(stream) {
-      _micStream = stream;
-      _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      _audioCtx.resume().then(function() {
-        _analyser = _audioCtx.createAnalyser(); _analyser.fftSize = 512; _analyser.smoothingTimeConstant = 0.8;
+  function _noiseOn2(){
+    if(_noiseOn||!navigator.mediaDevices)return;
+    navigator.mediaDevices.getUserMedia({audio:true,video:false}).then(function(stream){
+      _micStream=stream;
+      _audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+      _audioCtx.resume().then(function(){
+        _analyser=_audioCtx.createAnalyser();_analyser.fftSize=512;_analyser.smoothingTimeConstant=0.8;
         _audioCtx.createMediaStreamSource(stream).connect(_analyser);
-        _noiseActive = true; _noiseAboveStart = 0; _noiseHistory = []; _avgNoise = 0;
+        _noiseOn=true;_noiseAbove=0;_noiseHistory=[];_avgNoise=0;
+        var btn=document.getElementById('ss-mic-toggle');if(btn)btn.classList.add('on');
+        var badge=document.getElementById('ss-nbadge');if(badge){badge.textContent='Silenzio';badge.className='ss-noise-badge';}
         _log('Microfono attivo');
         _noisePoll();
       });
-    }).catch(function(e) { _log('Mic negato: ' + e.message); });
+    }).catch(function(e){_log('Mic negato: '+e.message);});
   }
 
-  function _noisePoll() {
-    if (!_noiseActive) return;
-    var data = new Uint8Array(_analyser.frequencyBinCount);
+  function _noisePoll(){
+    if(!_noiseOn)return;
+    var data=new Uint8Array(_analyser.frequencyBinCount);
     _analyser.getByteFrequencyData(data);
-    var avg = data.reduce(function(a,b){return a+b;},0) / data.length;
-    var pct = Math.min(100, avg / 1.2);
-    _noiseLevel = Math.round(pct);
+    var avg=data.reduce(function(a,b){return a+b;},0)/data.length;
+    var pct=Math.min(100,avg/1.2);
+    _noiseLevel=Math.round(pct);
 
-    // VU meter update (Bottega logic: green < 33, amber < 66, red >= 66)
-    var fill = document.getElementById('ss-nf');
-    if (fill) {
-      fill.style.height = _noiseLevel + '%';
-      fill.className = 'ss-vu-fill ' + (_noiseLevel < 33 ? 'ss-green' : _noiseLevel < 66 ? 'ss-amber' : 'ss-red');
-    }
-
-    // Noise history for session average
+    // History
     _noiseHistory.push(pct);
-    if (_noiseHistory.length > 600) _noiseHistory.shift();
-    _avgNoise = Math.round(_noiseHistory.reduce(function(a,b){return a+b;},0) / _noiseHistory.length);
+    if(_noiseHistory.length>600)_noiseHistory.shift();
+    _avgNoise=Math.round(_noiseHistory.reduce(function(a,b){return a+b;},0)/_noiseHistory.length);
 
-    // Violation: sustained noise > 66% for sustainMs (Bottega: 10s default)
-    var nel = _sensorEls['noise'];
-    if (pct > 66) {
-      if (!_noiseAboveStart) _noiseAboveStart = Date.now();
-      if (Date.now() - _noiseAboveStart > _cfg.detections.noise.sustainMs) {
-        if (!_locked) { _add('noise'); _noiseAboveStart = Date.now(); }
+    // Color band
+    var color=_noiseLevel<33?'green':_noiseLevel<66?'amber':'red';
+    var hexMap={green:'#27ae60',amber:'#d4a017',red:'#e74c3c'};
+
+    // Update chart bars (last 20 readings, sampled every ~5 frames)
+    var chart=document.getElementById('ss-nchart');
+    if(chart&&_noiseHistory.length%5===0){
+      var bars=chart.children;
+      var hist=_noiseHistory.slice(-20*5);// last 100 readings, sample every 5
+      for(var i=0;i<20;i++){
+        var idx=Math.min(i*5,hist.length-1);
+        var val=idx>=0?hist[hist.length-1-((19-i)*5)]||0:0;
+        var h=Math.max(2,val/100*36);
+        var bc=val<33?hexMap.green:val<66?hexMap.amber:hexMap.red;
+        if(bars[i]){bars[i].style.height=h+'px';bars[i].style.background=bc;}
       }
-      if (nel) { nel.classList.add('alert'); nel.classList.remove('on'); }
-    } else {
-      _noiseAboveStart = 0;
-      if (nel && !_violations.some(function(v){return v.type==='noise';})) { nel.classList.remove('alert'); nel.classList.add('on'); }
     }
-    _noiseRAF = requestAnimationFrame(_noisePoll);
+
+    // Stats
+    var pctEl=document.getElementById('ss-npct');
+    if(pctEl){pctEl.textContent=_noiseLevel+'%';pctEl.className='ss-noise-pct'+(color!=='green'?' '+color:'');}
+    var avgEl=document.getElementById('ss-navg');
+    if(avgEl)avgEl.textContent='Media: '+_avgNoise+'%';
+    var badge=document.getElementById('ss-nbadge');
+    if(badge){
+      badge.textContent=color==='green'?'Silenzio':color==='amber'?'Attenzione':'Troppo forte';
+      badge.className='ss-noise-badge'+(color!=='green'?' '+color:'');
+    }
+
+    // Sensor row color
+    var nel=_sensorEls['noise'];
+    if(nel){
+      var hasViol=_viol.some(function(v){return v.type==='noise';});
+      if(color==='red'){nel.className='ss-row alert';nel.setAttribute('data-sid','noise');}
+      else if(color==='amber'||hasViol){nel.className='ss-row warn';nel.setAttribute('data-sid','noise');}
+      else{nel.className='ss-row ok';nel.setAttribute('data-sid','noise');}
+    }
+
+    // Violation threshold
+    if(pct>66){
+      if(!_noiseAbove)_noiseAbove=Date.now();
+      if(Date.now()-_noiseAbove>_cfg.detections.noise.sustainMs){
+        if(!_locked){_add('noise');_noiseAbove=Date.now();}
+      }
+    } else {_noiseAbove=0;}
+
+    _noiseRAF=requestAnimationFrame(_noisePoll);
   }
 
-  function _noiseStop() {
-    _noiseActive = false;
-    if (_noiseRAF) cancelAnimationFrame(_noiseRAF);
-    if (_micStream) _micStream.getTracks().forEach(function(t){t.stop();});
-    if (_audioCtx) _audioCtx.close();
-    _audioCtx = null; _analyser = null; _micStream = null;
-    var f = document.getElementById('ss-nf'); if (f) { f.style.height = '0%'; f.className = 'ss-vu-fill ss-green'; }
+  function _noiseOff2(){
+    _noiseOn=false;
+    if(_noiseRAF)cancelAnimationFrame(_noiseRAF);
+    if(_micStream)_micStream.getTracks().forEach(function(t){t.stop();});
+    if(_audioCtx)_audioCtx.close();
+    _audioCtx=null;_analyser=null;_micStream=null;
+    var btn=document.getElementById('ss-mic-toggle');if(btn)btn.classList.remove('on');
+    var badge=document.getElementById('ss-nbadge');if(badge){badge.textContent='Off';badge.className='ss-noise-badge';}
+    var pctEl=document.getElementById('ss-npct');if(pctEl){pctEl.textContent='--%';pctEl.className='ss-noise-pct';}
+    // Reset chart
+    var chart=document.getElementById('ss-nchart');
+    if(chart){for(var i=0;i<chart.children.length;i++){chart.children[i].style.height='2px';chart.children[i].style.background='#2a3a4a';}}
     _log('Microfono off');
   }
 
-  // ── PUBLIC ──
+  /* ═══ PUBLIC API ═══ */
   return {
-    version: '2.0.0',
-    init: function(cfg) {
-      if (_init) return; _cfg = _merge(DEFAULTS, cfg||{}); _startTime = Date.now(); _init = true;
-      _css(); _buildBar(); _d1(); _d2(); _d3(); _d4(); _d5(); _d6(); _d7();
-      _log('SalaStudio v2.0 — ' + Object.keys(_cfg.detections).filter(function(k){return _cfg.detections[k].enabled;}).length + '/7 sensori');
+    version:'2.1.0',
+    init:function(cfg){
+      if(_ready)return;_cfg=_mg(DEF,cfg||{});_t0=Date.now();_ready=true;
+      _css();_buildBar();_d1();_d2();_d3();_d4();_d5();_d6();_d7();
+      _log('SalaStudio v2.1 — '+Object.keys(_cfg.detections).filter(function(k){return _cfg.detections[k].enabled;}).length+'/7 sensori');
     },
-    sectionEnter: function(id) { if (_init) { _sectionEnter[id] = Date.now(); _log('sectionEnter("'+id+'")'); } },
-    sectionComplete: function(id) {
-      if (!_init||_locked) return; var c = _cfg.detections.speedSection; if (!c.enabled) return;
-      var t0 = _sectionEnter[id]; if (!t0) return;
-      var s = (Date.now()-t0)/1000;
-      if (s < c.minSectionSec) _add('speedSection'); else _log('Sezione "'+id+'" OK ('+s.toFixed(1)+'s)');
+    sectionEnter:function(id){if(_ready){_secEnter[id]=Date.now();}},
+    sectionComplete:function(id){
+      if(!_ready||_locked)return;var c=_cfg.detections.speedSection;if(!c.enabled)return;
+      var t0=_secEnter[id];if(!t0)return;
+      var s=(Date.now()-t0)/1000;
+      if(s<c.minSec)_add('speedSection');else _log('Sezione "'+id+'" OK ('+s.toFixed(1)+'s)');
     },
-    registerYT: function(p) { if (_init) _wyt(p); },
-    startNoise: function() { if (_init) _noiseStart(); },
-    stopNoise: function() { if (_init) _noiseStop(); },
-    report: function(type) { if (_init && LABELS[type]) _add(type); },
-    getState: function() { return { violations: _violations.slice(), locked: _locked, elapsed: _init ? Math.floor((Date.now()-_startTime)/1000) : 0, noiseLevel: _noiseLevel, avgNoise: _avgNoise }; }
+    registerYT:function(p){if(_ready)_wyt(p);},
+    startNoise:function(){if(_ready)_noiseOn2();},
+    stopNoise:function(){if(_ready)_noiseOff2();},
+    toggleNoise:function(){if(_noiseOn)_noiseOff2();else _noiseOn2();},
+    report:function(type){if(_ready&&LBL[type])_add(type);},
+    getState:function(){return{violations:_viol.slice(),locked:_locked,elapsed:_ready?Math.floor((Date.now()-_t0)/1000):0,noiseLevel:_noiseLevel,avgNoise:_avgNoise};}
   };
 })();
 
-// ── TEST INIT ──
-SalaStudio.init({ pin: '1234', minTotalMinutes: 15, debug: true });
+/* ═══ INIT ═══ */
+SalaStudio.init({ pin:'1234', minTotalMin:15, debug:true });
+
+/* ═══ WORD COUNTER ═══ */
+document.querySelector('.writing-area').addEventListener('input',function(){
+  var w=this.value.trim().split(/\s+/).filter(function(x){return x.length>0;}).length;
+  document.getElementById('word-count').textContent=w+' parol'+(w===1?'a':'e');
+});
+
+/* ═══ QUIZ SELECTION ═══ */
+document.querySelectorAll('.quiz-opt').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var siblings=this.parentElement.querySelectorAll('.quiz-opt');
+    siblings.forEach(function(s){s.classList.remove('selected');});
+    this.classList.add('selected');
+  });
+});
 </script>
 </body>
 </html>
