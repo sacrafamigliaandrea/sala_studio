@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SalaStudio v2 — Test Environment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #f5f3ee; color: #2a2a2a; }
+  .test-env { max-width: 820px; margin: 0 auto; padding: 2rem 2rem 2rem 82px; }
+  .test-env h1 { font-size: 1.45rem; margin-bottom: .4rem; }
+  .test-env p.subtitle { color: #666; margin-bottom: 2rem; font-size: .92rem; }
+  .test-section { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 1.4rem; margin-bottom: 1.1rem; }
+  .test-section h2 { font-size: 1.05rem; margin-bottom: .7rem; color: #1a3a5c; }
+  .test-section p { font-size: .88rem; line-height: 1.6; margin-bottom: .5rem; color: #444; }
+  .test-btn { display: inline-block; padding: .5rem 1.1rem; border: 1px solid #1a3a5c; background: #fff; color: #1a3a5c; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: .83rem; margin: .25rem .25rem .25rem 0; transition: background .2s, color .2s; }
+  .test-btn:hover { background: #1a3a5c; color: #fff; }
+  .quiz-option { display: block; width: 100%; text-align: left; padding: .55rem .9rem; margin-bottom: .35rem; border: 1px solid #ccc; background: #fafafa; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: .85rem; transition: border-color .2s; }
+  .quiz-option:hover { border-color: #1a3a5c; }
+  .long-content p { margin-bottom: .7rem; }
+  .console-log { background: #1e1e1e; color: #a5d6a7; font-family: 'Courier New', monospace; font-size: .75rem; padding: .8rem; border-radius: 8px; max-height: 180px; overflow-y: auto; margin-top: .8rem; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<div class="test-env">
+  <h1>SalaStudio v2 — Ambiente di Test</h1>
+  <p class="subtitle">Toolbar a sinistra con 7 sensori. Testa ogni violazione — la barra laterale reagisce in tempo reale.</p>
+
+  <div class="test-section" data-salastudio-section="click-test">
+    <h2>1. Click Compulsivo</h2>
+    <p>8+ click in 5 secondi.</p>
+    <button class="test-btn">A</button><button class="test-btn">B</button><button class="test-btn">C</button><button class="test-btn">D</button><button class="test-btn">E</button>
+  </div>
+
+  <div class="test-section" data-salastudio-section="key-test">
+    <h2>2. Digitazione Compulsiva</h2>
+    <p>Tasti a caso fuori da campi di testo (12+ in 3s). Dentro il campo sotto non conta.</p>
+    <input type="text" placeholder="Campo legittimo..." style="width:100%;padding:.45rem;border:1px solid #ccc;border-radius:6px;font-family:inherit;margin-top:.3rem;">
+  </div>
+
+  <div class="test-section" data-salastudio-section="speed-test">
+    <h2>3. Sezione Troppo Veloce</h2>
+    <p>Minimo 10 secondi. Premi "Completa" subito per attivare.</p>
+    <button class="test-btn" onclick="SalaStudio.sectionComplete('speed-test')">Completa Sezione</button>
+  </div>
+
+  <div class="test-section" data-salastudio-section="quiz-test">
+    <h2>4. Scelte Non Lette</h2>
+    <p>3+ selezioni in 6 secondi.</p>
+    <button class="quiz-option" data-salastudio-choice>A) La fotosintesi produce ossigeno</button>
+    <button class="quiz-option" data-salastudio-choice>B) Le piante non hanno bisogno di luce</button>
+    <button class="quiz-option" data-salastudio-choice>C) Il glucosio è un prodotto</button>
+    <button class="quiz-option" data-salastudio-choice>D) L'acqua non è necessaria</button>
+    <button class="quiz-option" data-salastudio-choice>E) La clorofilla assorbe la luce</button>
+    <button class="quiz-option" data-salastudio-choice>F) Il CO2 viene rilasciato</button>
+  </div>
+
+  <div class="test-section long-content" data-salastudio-section="scroll-test" data-salastudio-readable="true">
+    <h2>5. Contenuto Saltato (Scroll)</h2>
+    <p>Scorri velocemente in fondo — il sistema rileva se non hai letto.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+    <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore.</p>
+    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+  </div>
+
+  <div class="test-section" data-salastudio-section="video-test">
+    <h2>6. Video Skip</h2>
+    <p>Simulato (in produzione: <code>SalaStudio.registerYT(player)</code>).</p>
+    <button class="test-btn" onclick="SalaStudio.report('videoSkip')">Simula Skip</button>
+    <button class="test-btn" onclick="SalaStudio.report('videoSkip')">Simula Chiusura Prematura</button>
+  </div>
+
+  <div class="test-section" data-salastudio-section="noise-test">
+    <h2>7. Rumore Ambientale</h2>
+    <p>Attiva il microfono dalla toolbar o dal pulsante. Il VU meter nella sidebar mostra il livello in tempo reale.</p>
+    <button class="test-btn" onclick="SalaStudio.startNoise()">Attiva Microfono</button>
+    <button class="test-btn" onclick="SalaStudio.stopNoise()">Disattiva</button>
+  </div>
+
+  <div class="test-section">
+    <h2>Console</h2>
+    <div id="ss-console" class="console-log">SalaStudio v2.0 — Console attiva\n</div>
+    <button class="test-btn" onclick="document.getElementById('ss-console').textContent=''">Pulisci</button>
+    <button class="test-btn" onclick="location.reload()">Reset</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     SALASTUDIO v2.0
+     Sistema di monitoraggio comportamentale studenti
+     Ecosistema SacraFamiglia education
+     Toolbar laterale sinistra — 7 sensori
+     ============================================================ -->
+<script>
+const SalaStudio = (function() {
+  'use strict';
+
+  let _cfg = {}, _violations = [], _startTime = 0, _locked = false, _init = false;
+  let _clickTs = [], _keyTs = [], _choiceTs = [], _sectionEnter = {}, _scrollTrack = {};
+  let _ytPlayers = [], _ytLast = {};
+  let _audioCtx = null, _analyser = null, _micStream = null, _noiseActive = false, _noiseRAF = null, _noiseAboveStart = 0, _noiseLevel = 0, _noiseHistory = [], _avgNoise = 0;
+  let _sidebar = null, _overlay = null, _sensorEls = {};
+
+  const DEFAULTS = {
+    pin: '1234', minTotalMinutes: 15, violationsForTimeLock: 3, violationsForAbsoluteLock: 5,
+    detections: {
+      compulsiveClick: { enabled: true, threshold: 8, windowMs: 5000 },
+      compulsiveKeys:  { enabled: true, threshold: 12, windowMs: 3000 },
+      videoSkip:       { enabled: true, skipThresholdSec: 10, minWatchPercent: 0.3 },
+      speedSection:    { enabled: true, minSectionSec: 10 },
+      unreadChoices:   { enabled: true, threshold: 3, windowMs: 6000 },
+      skippedContent:  { enabled: true, minReadSec: 5 },
+      noise:           { enabled: true, sustainMs: 10000 }
+    },
+    onViolation: null, debug: false
+  };
+
+  const SENSORS = [
+    { id: 'compulsiveClick', label: 'Click' },
+    { id: 'compulsiveKeys',  label: 'Tastiera' },
+    { id: 'videoSkip',       label: 'Video' },
+    { id: 'speedSection',    label: 'Velocità' },
+    { id: 'unreadChoices',   label: 'Scelte' },
+    { id: 'skippedContent',  label: 'Lettura' },
+    { id: 'noise',           label: 'Silenzio' }
+  ];
+
+  const SVG = {
+    compulsiveClick: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2z"/><path d="M9 9L4.5 4.5"/><path d="M7 13l-3.5 3.5"/><path d="M13 7l3.5-3.5"/></svg>',
+    compulsiveKeys: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg>',
+    videoSkip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,4 15,12 5,20"/><line x1="19" y1="5" x2="19" y2="19"/></svg>',
+    speedSection: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
+    unreadChoices: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
+    skippedContent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/><line x1="5" y1="21" x2="19" y2="21"/></svg>',
+    noise: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
+    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    logo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>'
+  };
+
+  const LABELS = {
+    compulsiveClick: 'Click compulsivo', compulsiveKeys: 'Digitazione compulsiva',
+    videoSkip: 'Video saltato', speedSection: 'Sezione troppo veloce',
+    unreadChoices: 'Scelte non lette', skippedContent: 'Contenuto saltato', noise: 'Rumore eccessivo'
+  };
+
+  // ── Helpers ──
+  function _log(m) {
+    if (!_cfg.debug) return;
+    console.log('[SalaStudio]', m);
+    var el = document.getElementById('ss-console');
+    if (el) { el.textContent += '[' + new Date().toLocaleTimeString('it-IT') + '] ' + m + '\n'; el.scrollTop = el.scrollHeight; }
+  }
+
+  function _merge(t, s) {
+    var o = Object.assign({}, t);
+    for (var k in s) { if (s[k] && typeof s[k] === 'object' && !Array.isArray(s[k])) o[k] = _merge(o[k]||{}, s[k]); else o[k] = s[k]; }
+    return o;
+  }
+
+  // ── CSS ──
+  function _css() {
+    var s = document.createElement('style'); s.id = 'ss-css';
+    s.textContent = `
+#ss-bar{position:fixed;left:0;top:0;bottom:0;width:62px;background:linear-gradient(180deg,#1a2332 0%,#162029 100%);display:flex;flex-direction:column;align-items:center;z-index:99990;font-family:'DM Sans',system-ui,sans-serif;box-shadow:2px 0 16px rgba(0,0,0,.22);transition:width .28s cubic-bezier(.4,0,.2,1);overflow:hidden;user-select:none}
+#ss-bar.ss-exp{width:174px}
+.ss-logo{width:100%;padding:11px 0 8px;display:flex;flex-direction:column;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;flex-shrink:0;transition:padding .2s}
+.ss-logo svg{width:24px;height:24px;color:#7eb8da;transition:color .2s}
+.ss-logo:hover svg{color:#a8d8f0}
+.ss-logo-txt{font-size:7.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(126,184,218,.7);margin-top:4px;white-space:nowrap}
+.ss-sens-wrap{flex:1;width:100%;display:flex;flex-direction:column;padding:6px 0;gap:1px;overflow-y:auto;overflow-x:hidden}
+.ss-s{display:flex;align-items:center;width:100%;padding:9px 0;position:relative;transition:background .2s}
+.ss-s:hover{background:rgba(255,255,255,.04)}
+.ss-s-iw{width:62px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.ss-s svg{width:19px;height:19px;color:#4a6070;transition:color .3s,filter .3s}
+.ss-s.on svg{color:#7eb8da}
+.ss-s.alert svg{color:#e74c3c;filter:drop-shadow(0 0 4px rgba(231,76,60,.4));animation:ss-p 1.2s ease infinite}
+@keyframes ss-p{0%,100%{opacity:1}50%{opacity:.45}}
+.ss-bg{position:absolute;top:0;right:0;background:#e74c3c;color:#fff;font-size:8.5px;font-weight:700;min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px;opacity:0;transform:scale(.4);transition:opacity .25s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.ss-bg.vis{opacity:1;transform:scale(1)}
+.ss-lbl{font-size:11px;color:#7a8f9e;white-space:nowrap;overflow:hidden;opacity:0;transition:opacity .2s;margin-left:2px}
+#ss-bar.ss-exp .ss-lbl{opacity:1}
+.ss-tip{position:absolute;left:66px;top:50%;transform:translateY(-50%);background:#243040;color:#c0d4e0;font-size:10.5px;padding:4px 9px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:99991;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.ss-tip::before{content:'';position:absolute;left:-4px;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:#243040}
+#ss-bar:not(.ss-exp) .ss-s:hover .ss-tip{opacity:1}
+
+/* Noise VU */
+.ss-vu{display:flex;align-items:center;gap:2px;margin-left:2px}
+.ss-vu-bar{width:3px;height:18px;background:#2a3a4a;border-radius:1.5px;overflow:hidden;position:relative}
+.ss-vu-fill{position:absolute;bottom:0;left:0;right:0;border-radius:1.5px;transition:height .08s linear,background .3s}
+.ss-vu-fill.ss-green{background:#27ae60}
+.ss-vu-fill.ss-amber{background:#d4a017}
+.ss-vu-fill.ss-red{background:#e74c3c}
+
+/* Separator */
+.ss-sep{height:1px;background:rgba(255,255,255,.06);margin:4px 12px;flex-shrink:0}
+
+/* Footer */
+.ss-ft{width:100%;padding:10px 0 8px;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.ss-dot{width:7px;height:7px;border-radius:50%;background:#27ae60;margin-bottom:3px;transition:background .3s,box-shadow .3s}
+.ss-dot.w{background:#f39c12;box-shadow:0 0 6px rgba(243,156,18,.4)}
+.ss-dot.d{background:#e74c3c;box-shadow:0 0 6px rgba(231,76,60,.4)}
+.ss-ft-t{font-size:7.5px;color:#4a6070;letter-spacing:.5px;text-transform:uppercase}
+
+/* Overlay */
+#ss-ov{position:fixed;inset:0;z-index:99999;background:rgba(18,22,28,.95);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:ss-fi .4s ease}
+@keyframes ss-fi{0%{opacity:0}100%{opacity:1}}
+.ss-lc{background:#fff;border-radius:14px;padding:2rem 1.8rem;max-width:390px;width:88%;text-align:center;font-family:'DM Sans',system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.ss-lc svg{width:44px;height:44px;color:#c0392b;margin-bottom:.8rem}
+.ss-lc h2{font-size:1.1rem;color:#1a1a1a;margin-bottom:.35rem}
+.ss-lc p{font-size:.82rem;color:#666;margin-bottom:.9rem;line-height:1.5}
+.ss-lc-sum{text-align:left;background:#fdf2f2;border-radius:8px;padding:.6rem .8rem;margin-bottom:.9rem;font-size:.76rem;color:#7a1a1a;line-height:1.8}
+.ss-lc input{width:100%;padding:.55rem;border:1.5px solid #ddd;border-radius:8px;text-align:center;font-family:inherit;font-size:1rem;letter-spacing:.4em;margin-bottom:.6rem;outline:none;transition:border-color .2s}
+.ss-lc input:focus{border-color:#1a3a5c}
+.ss-lc input.ss-wr{border-color:#c0392b;animation:ss-sh .4s ease}
+.ss-lc button{width:100%;padding:.55rem;border:none;border-radius:8px;background:#1a3a5c;color:#fff;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s}
+.ss-lc button:hover{background:#14304d}
+@keyframes ss-sh{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+    `;
+    document.head.appendChild(s);
+  }
+
+  // ── Sidebar ──
+  function _buildBar() {
+    _sidebar = document.createElement('div');
+    _sidebar.id = 'ss-bar';
+
+    var logo = document.createElement('div');
+    logo.className = 'ss-logo';
+    logo.innerHTML = SVG.logo + '<span class="ss-logo-txt">SalaStudio</span>';
+    logo.addEventListener('click', function() { _sidebar.classList.toggle('ss-exp'); });
+    _sidebar.appendChild(logo);
+
+    var wrap = document.createElement('div');
+    wrap.className = 'ss-sens-wrap';
+
+    SENSORS.forEach(function(s, i) {
+      if (!_cfg.detections[s.id] || !_cfg.detections[s.id].enabled) return;
+
+      var row = document.createElement('div');
+      row.className = 'ss-s on';
+      row.setAttribute('data-sensor', s.id);
+
+      var inner = '<div class="ss-s-iw">' + SVG[s.id] + '<span class="ss-bg" data-bg="' + s.id + '">0</span></div>';
+
+      if (s.id === 'noise') {
+        inner += '<div class="ss-vu"><div class="ss-vu-bar"><div class="ss-vu-fill ss-green" id="ss-nf" style="height:0%"></div></div></div>';
+      }
+
+      inner += '<span class="ss-lbl">' + s.label + '</span><span class="ss-tip">' + s.label + '</span>';
+      row.innerHTML = inner;
+      wrap.appendChild(row);
+      _sensorEls[s.id] = row;
+
+      // Separatore dopo Video (gruppo "input" vs "comportamento")
+      if (s.id === 'compulsiveKeys') {
+        var sep = document.createElement('div');
+        sep.className = 'ss-sep';
+        wrap.appendChild(sep);
+      }
+      if (s.id === 'skippedContent') {
+        var sep2 = document.createElement('div');
+        sep2.className = 'ss-sep';
+        wrap.appendChild(sep2);
+      }
+    });
+
+    _sidebar.appendChild(wrap);
+
+    var ft = document.createElement('div');
+    ft.className = 'ss-ft';
+    ft.innerHTML = '<div class="ss-dot" id="ss-dot"></div><span class="ss-ft-t" id="ss-ft-t">attivo</span>';
+    _sidebar.appendChild(ft);
+
+    document.body.appendChild(_sidebar);
+  }
+
+  function _updBar() {
+    var counts = {};
+    _violations.forEach(function(v) { counts[v.type] = (counts[v.type]||0) + 1; });
+    SENSORS.forEach(function(s) {
+      var el = _sensorEls[s.id]; if (!el) return;
+      var bg = el.querySelector('[data-bg]');
+      var c = counts[s.id] || 0;
+      if (c > 0) { bg.textContent = c; bg.classList.add('vis'); el.classList.add('alert'); el.classList.remove('on'); }
+      else { bg.classList.remove('vis'); el.classList.remove('alert'); el.classList.add('on'); }
+    });
+    var n = _violations.length;
+    var dot = document.getElementById('ss-dot');
+    var txt = document.getElementById('ss-ft-t');
+    if (n === 0) { dot.className = 'ss-dot'; txt.textContent = 'attivo'; }
+    else if (n < _cfg.violationsForTimeLock) { dot.className = 'ss-dot w'; txt.textContent = n + '/' + _cfg.violationsForAbsoluteLock; }
+    else { dot.className = 'ss-dot d'; txt.textContent = n + '/' + _cfg.violationsForAbsoluteLock; }
+  }
+
+  // ── Violations ──
+  function _add(type) {
+    if (_locked) return;
+    _violations.push({ type: type, time: Date.now() });
+    _log('VIOLAZIONE: ' + LABELS[type] + ' (' + _violations.length + ')');
+    _updBar();
+    if (_cfg.onViolation) _cfg.onViolation(type, _violations.length);
+    _chk();
+  }
+
+  function _chk() {
+    var el = (Date.now() - _startTime) / 60000, n = _violations.length;
+    if (n >= _cfg.violationsForAbsoluteLock) _lock(n + ' violazioni raggiunte. Attività sospesa.');
+    else if (el < _cfg.minTotalMinutes && n >= _cfg.violationsForTimeLock) _lock(n + ' violazioni in ' + Math.floor(el) + ' min. Rallenta.');
+  }
+
+  function _lock(msg) {
+    if (_locked) return;
+    _locked = true; _log('BLOCCO: ' + msg);
+    var counts = {};
+    _violations.forEach(function(v) { counts[v.type] = (counts[v.type]||0) + 1; });
+    var sum = ''; Object.keys(counts).forEach(function(t) { sum += LABELS[t] + ': ' + counts[t] + '<br>'; });
+    _overlay = document.createElement('div'); _overlay.id = 'ss-ov';
+    _overlay.innerHTML = '<div class="ss-lc">' + SVG.lock + '<h2>Attività Sospesa</h2><p>' + msg + '</p><div class="ss-lc-sum">' + sum + '</div><input type="password" id="ss-pin" placeholder="PIN docente" maxlength="8" autocomplete="off"><button id="ss-pb">Sblocca</button></div>';
+    document.body.appendChild(_overlay);
+    var inp = document.getElementById('ss-pin');
+    document.getElementById('ss-pb').addEventListener('click', function() { _unlock(inp); });
+    inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') _unlock(inp); });
+    inp.focus();
+  }
+
+  function _unlock(inp) {
+    if (inp.value === _cfg.pin) {
+      _locked = false; _violations = []; _startTime = Date.now();
+      if (_overlay) { _overlay.remove(); _overlay = null; }
+      _updBar(); _log('SBLOCCATO');
+    } else { inp.classList.add('ss-wr'); inp.value = ''; setTimeout(function() { inp.classList.remove('ss-wr'); }, 400); }
+  }
+
+  // ── Detection 1: Click ──
+  function _d1() {
+    var c = _cfg.detections.compulsiveClick; if (!c.enabled) return;
+    document.addEventListener('click', function() {
+      if (_locked) return; var now = Date.now(); _clickTs.push(now);
+      _clickTs = _clickTs.filter(function(t) { return now - t < c.windowMs; });
+      if (_clickTs.length >= c.threshold) { _add('compulsiveClick'); _clickTs = []; }
+    }, true);
+    _log('Sensore: Click (' + c.threshold + '/' + c.windowMs + 'ms)');
+  }
+
+  // ── Detection 2: Keys ──
+  function _d2() {
+    var c = _cfg.detections.compulsiveKeys; if (!c.enabled) return;
+    document.addEventListener('keydown', function(e) {
+      if (_locked) return;
+      var tag = e.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
+      var now = Date.now(); _keyTs.push(now);
+      _keyTs = _keyTs.filter(function(t) { return now - t < c.windowMs; });
+      if (_keyTs.length >= c.threshold) { _add('compulsiveKeys'); _keyTs = []; }
+    }, true);
+    _log('Sensore: Tastiera (' + c.threshold + '/' + c.windowMs + 'ms)');
+  }
+
+  // ── Detection 3: Video ──
+  function _d3() { if (!_cfg.detections.videoSkip.enabled) return; _log('Sensore: Video (registerYT)'); }
+  function _wyt(player) {
+    var c = _cfg.detections.videoSkip, id = 'y'+Math.random().toString(36).substr(2,4);
+    _ytLast[id] = 0; var dur = 0;
+    var p = setInterval(function() {
+      if (_locked) return;
+      try {
+        var ct = player.getCurrentTime(); if (!dur) dur = player.getDuration();
+        if (_ytLast[id] > 0 && ct - _ytLast[id] > c.skipThresholdSec) _add('videoSkip');
+        _ytLast[id] = ct;
+        var st = player.getPlayerState();
+        if (st === 0 || st === -1) { if (dur > 0 && ct/dur < c.minWatchPercent && ct > 2) _add('videoSkip'); clearInterval(p); }
+      } catch(e) {}
+    }, 2000);
+  }
+
+  // ── Detection 4: Speed ──
+  function _d4() {
+    if (!_cfg.detections.speedSection.enabled) return;
+    document.querySelectorAll('[data-salastudio-section]').forEach(function(el) {
+      var id = el.getAttribute('data-salastudio-section');
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting && !_sectionEnter[id]) { _sectionEnter[id] = Date.now(); } });
+      }, { threshold: 0.3 }).observe(el);
+    });
+    _log('Sensore: Velocità (min ' + _cfg.detections.speedSection.minSectionSec + 's)');
+  }
+
+  // ── Detection 5: Choices ──
+  function _d5() {
+    var c = _cfg.detections.unreadChoices; if (!c.enabled) return;
+    document.addEventListener('click', function(e) {
+      if (_locked || !e.target.closest('[data-salastudio-choice]')) return;
+      var now = Date.now(); _choiceTs.push(now);
+      _choiceTs = _choiceTs.filter(function(t) { return now - t < c.windowMs; });
+      if (_choiceTs.length >= c.threshold) { _add('unreadChoices'); _choiceTs = []; }
+    }, true);
+    _log('Sensore: Scelte (' + c.threshold + '/' + c.windowMs + 'ms)');
+  }
+
+  // ── Detection 6: Scroll ──
+  function _d6() {
+    var c = _cfg.detections.skippedContent; if (!c.enabled) return;
+    document.querySelectorAll('[data-salastudio-readable]').forEach(function(el) {
+      var id = el.getAttribute('data-salastudio-section') || ('r'+Math.random().toString(36).substr(2,3));
+      _scrollTrack[id] = { entered: 0, done: false };
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting && !_scrollTrack[id].entered) _scrollTrack[id].entered = Date.now(); });
+      }, { threshold: 0.1 }).observe(el);
+      var sn = document.createElement('div'); sn.style.height = '1px'; el.appendChild(sn);
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting && _scrollTrack[id].entered && !_scrollTrack[id].done) {
+            if ((Date.now() - _scrollTrack[id].entered)/1000 < c.minReadSec) _add('skippedContent');
+            _scrollTrack[id].done = true;
+          }
+        });
+      }, { threshold: 1.0 }).observe(sn);
+    });
+    _log('Sensore: Lettura (min ' + c.minReadSec + 's)');
+  }
+
+  // ── Detection 7: Noise ──
+  function _d7() { if (!_cfg.detections.noise.enabled) return; _log('Sensore: Silenzio (soglia 66%, sustain ' + _cfg.detections.noise.sustainMs + 'ms)'); }
+
+  function _noiseStart() {
+    if (_noiseActive || !navigator.mediaDevices) { _log('Microfono non disponibile'); return; }
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function(stream) {
+      _micStream = stream;
+      _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      _audioCtx.resume().then(function() {
+        _analyser = _audioCtx.createAnalyser(); _analyser.fftSize = 512; _analyser.smoothingTimeConstant = 0.8;
+        _audioCtx.createMediaStreamSource(stream).connect(_analyser);
+        _noiseActive = true; _noiseAboveStart = 0; _noiseHistory = []; _avgNoise = 0;
+        _log('Microfono attivo');
+        _noisePoll();
+      });
+    }).catch(function(e) { _log('Mic negato: ' + e.message); });
+  }
+
+  function _noisePoll() {
+    if (!_noiseActive) return;
+    var data = new Uint8Array(_analyser.frequencyBinCount);
+    _analyser.getByteFrequencyData(data);
+    var avg = data.reduce(function(a,b){return a+b;},0) / data.length;
+    var pct = Math.min(100, avg / 1.2);
+    _noiseLevel = Math.round(pct);
+
+    // VU meter update (Bottega logic: green < 33, amber < 66, red >= 66)
+    var fill = document.getElementById('ss-nf');
+    if (fill) {
+      fill.style.height = _noiseLevel + '%';
+      fill.className = 'ss-vu-fill ' + (_noiseLevel < 33 ? 'ss-green' : _noiseLevel < 66 ? 'ss-amber' : 'ss-red');
+    }
+
+    // Noise history for session average
+    _noiseHistory.push(pct);
+    if (_noiseHistory.length > 600) _noiseHistory.shift();
+    _avgNoise = Math.round(_noiseHistory.reduce(function(a,b){return a+b;},0) / _noiseHistory.length);
+
+    // Violation: sustained noise > 66% for sustainMs (Bottega: 10s default)
+    var nel = _sensorEls['noise'];
+    if (pct > 66) {
+      if (!_noiseAboveStart) _noiseAboveStart = Date.now();
+      if (Date.now() - _noiseAboveStart > _cfg.detections.noise.sustainMs) {
+        if (!_locked) { _add('noise'); _noiseAboveStart = Date.now(); }
+      }
+      if (nel) { nel.classList.add('alert'); nel.classList.remove('on'); }
+    } else {
+      _noiseAboveStart = 0;
+      if (nel && !_violations.some(function(v){return v.type==='noise';})) { nel.classList.remove('alert'); nel.classList.add('on'); }
+    }
+    _noiseRAF = requestAnimationFrame(_noisePoll);
+  }
+
+  function _noiseStop() {
+    _noiseActive = false;
+    if (_noiseRAF) cancelAnimationFrame(_noiseRAF);
+    if (_micStream) _micStream.getTracks().forEach(function(t){t.stop();});
+    if (_audioCtx) _audioCtx.close();
+    _audioCtx = null; _analyser = null; _micStream = null;
+    var f = document.getElementById('ss-nf'); if (f) { f.style.height = '0%'; f.className = 'ss-vu-fill ss-green'; }
+    _log('Microfono off');
+  }
+
+  // ── PUBLIC ──
+  return {
+    version: '2.0.0',
+    init: function(cfg) {
+      if (_init) return; _cfg = _merge(DEFAULTS, cfg||{}); _startTime = Date.now(); _init = true;
+      _css(); _buildBar(); _d1(); _d2(); _d3(); _d4(); _d5(); _d6(); _d7();
+      _log('SalaStudio v2.0 — ' + Object.keys(_cfg.detections).filter(function(k){return _cfg.detections[k].enabled;}).length + '/7 sensori');
+    },
+    sectionEnter: function(id) { if (_init) { _sectionEnter[id] = Date.now(); _log('sectionEnter("'+id+'")'); } },
+    sectionComplete: function(id) {
+      if (!_init||_locked) return; var c = _cfg.detections.speedSection; if (!c.enabled) return;
+      var t0 = _sectionEnter[id]; if (!t0) return;
+      var s = (Date.now()-t0)/1000;
+      if (s < c.minSectionSec) _add('speedSection'); else _log('Sezione "'+id+'" OK ('+s.toFixed(1)+'s)');
+    },
+    registerYT: function(p) { if (_init) _wyt(p); },
+    startNoise: function() { if (_init) _noiseStart(); },
+    stopNoise: function() { if (_init) _noiseStop(); },
+    report: function(type) { if (_init && LABELS[type]) _add(type); },
+    getState: function() { return { violations: _violations.slice(), locked: _locked, elapsed: _init ? Math.floor((Date.now()-_startTime)/1000) : 0, noiseLevel: _noiseLevel, avgNoise: _avgNoise }; }
+  };
+})();
+
+// ── TEST INIT ──
+SalaStudio.init({ pin: '1234', minTotalMinutes: 15, debug: true });
+</script>
+</body>
+</html>
