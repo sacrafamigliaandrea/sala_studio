@@ -8,72 +8,49 @@
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'DM Sans',sans-serif;background:#f4f2ed;color:#2a2a2a}
-
-  /* ── LAYOUT ── */
-  .sim-page{margin-left:64px;padding:2rem 2.5rem;max-width:900px}
-  .sim-page h1{font-size:1.5rem;color:#1a3a5c;margin-bottom:.3rem}
-  .sim-page .lead{font-size:.88rem;color:#777;margin-bottom:2rem}
-
-  /* ── CARDS ── */
-  .card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1.6rem;margin-bottom:1.4rem;position:relative}
-  .card-label{position:absolute;top:-10px;left:16px;background:#1a3a5c;color:#fff;font-size:.65rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:2px 10px;border-radius:4px}
-  .card h2{font-size:1.05rem;color:#1a3a5c;margin-bottom:.6rem;margin-top:.3rem}
-  .card p{font-size:.87rem;line-height:1.65;color:#4a4a4a;margin-bottom:.6rem}
-
-  /* ── VIDEO ── */
-  .video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:8px;overflow:hidden;background:#111;margin-bottom:.8rem}
+  .page{margin-right:260px;padding:2rem 2.5rem;max-width:860px}
+  .page h1{font-size:1.4rem;color:#1a3a5c;margin-bottom:.25rem}
+  .page .lead{font-size:.86rem;color:#777;margin-bottom:1.8rem}
+  .card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1.5rem;margin-bottom:1.2rem;position:relative}
+  .card-tag{position:absolute;top:-9px;left:14px;background:#1a3a5c;color:#fff;font-size:.6rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:2px 9px;border-radius:4px}
+  .card h2{font-size:1rem;color:#1a3a5c;margin:4px 0 .5rem}
+  .card p{font-size:.85rem;line-height:1.65;color:#4a4a4a;margin-bottom:.5rem}
+  .video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:8px;overflow:hidden;background:#111;margin-bottom:.6rem}
   .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-
-  /* ── READING ── */
-  .reading-block{background:#faf9f6;border-left:3px solid #1a3a5c;padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:.6rem 0;font-size:.85rem;line-height:1.75;color:#3a3a3a;max-height:280px;overflow-y:auto}
-
-  /* ── QUIZ ── */
-  .quiz-q{font-weight:600;font-size:.9rem;margin-bottom:.6rem;color:#1a3a5c}
-  .quiz-opt{display:block;width:100%;text-align:left;padding:.6rem 1rem;margin-bottom:.35rem;border:1.5px solid #ddd;background:#fafafa;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.84rem;transition:all .2s}
-  .quiz-opt:hover{border-color:#1a3a5c;background:#f0f4f8}
-  .quiz-opt.selected{border-color:#1a3a5c;background:#e8eef5;font-weight:500}
-
-  /* ── WRITING ── */
-  .writing-area{width:100%;min-height:140px;padding:.8rem 1rem;border:1.5px solid #ddd;border-radius:8px;font-family:inherit;font-size:.88rem;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s}
-  .writing-area:focus{border-color:#1a3a5c}
-  .writing-meta{display:flex;justify-content:space-between;margin-top:.4rem;font-size:.75rem;color:#999}
-
-  /* ── BUTTONS ── */
-  .btn{display:inline-flex;align-items:center;gap:6px;padding:.5rem 1.1rem;border:1.5px solid #1a3a5c;background:#fff;color:#1a3a5c;border-radius:7px;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:500;transition:all .2s}
+  .reading{background:#faf9f6;border-left:3px solid #1a3a5c;padding:.9rem 1.1rem;border-radius:0 8px 8px 0;margin:.5rem 0;font-size:.84rem;line-height:1.75;color:#3a3a3a;max-height:260px;overflow-y:auto}
+  .qq{font-weight:600;font-size:.88rem;margin-bottom:.5rem;color:#1a3a5c}
+  .qo{display:block;width:100%;text-align:left;padding:.55rem .9rem;margin-bottom:.3rem;border:1.5px solid #ddd;background:#fafafa;border-radius:7px;cursor:pointer;font-family:inherit;font-size:.83rem;transition:all .2s}
+  .qo:hover{border-color:#1a3a5c;background:#f0f4f8}
+  .qo.sel{border-color:#1a3a5c;background:#e8eef5;font-weight:500}
+  .warea{width:100%;min-height:130px;padding:.7rem .9rem;border:1.5px solid #ddd;border-radius:8px;font-family:inherit;font-size:.86rem;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s}
+  .warea:focus{border-color:#1a3a5c}
+  .wmeta{display:flex;justify-content:space-between;margin-top:.3rem;font-size:.73rem;color:#999}
+  .btn{display:inline-flex;align-items:center;gap:5px;padding:.45rem 1rem;border:1.5px solid #1a3a5c;background:#fff;color:#1a3a5c;border-radius:6px;cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:500;transition:all .2s}
   .btn:hover{background:#1a3a5c;color:#fff}
-  .btn-sm{padding:.35rem .8rem;font-size:.78rem}
-  .btn-primary{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
-  .btn-primary:hover{background:#14304d}
-
-  /* ── CONSOLE ── */
-  .console{background:#1a1e24;color:#81c784;font-family:'Courier New',monospace;font-size:.72rem;padding:.7rem .9rem;border-radius:8px;max-height:160px;overflow-y:auto;white-space:pre-wrap;margin-top:.5rem}
+  .btn-s{padding:.3rem .7rem;font-size:.76rem}
+  .con{background:#1a1e24;color:#81c784;font-family:'Courier New',monospace;font-size:.7rem;padding:.6rem .8rem;border-radius:8px;max-height:140px;overflow-y:auto;white-space:pre-wrap;margin-top:.4rem}
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════════
-     SIMULATOR PAGE — realistic content for testing SalaStudio
-     ════════════════════════════════════════════════════════ -->
-<div class="sim-page">
+<div class="page">
   <h1>Simulatore SalaStudio</h1>
-  <p class="lead">Pagina di test con contenuti reali dall'ecosistema SacraFamiglia education. La toolbar a sinistra monitora il tuo comportamento.</p>
+  <p class="lead">Contenuti reali dall'ecosistema SacraFamiglia. Il pannello a destra monitora il comportamento in tempo reale.</p>
 
-  <!-- ── VIDEO (YouTube) ── -->
   <div class="card" data-salastudio-section="video">
-    <span class="card-label">Sensore Video</span>
-    <h2>La Cittadinanza Digitale</h2>
-    <p>Guarda attentamente il video. Il sistema rileva se salti parti del contenuto o chiudi il video prima della fine.</p>
+    <span class="card-tag">Video</span>
+    <h2>Sicurezza Online</h2>
+    <p>Guarda il video con attenzione. Il sistema rileva salti e chiusure premature.</p>
     <div class="video-wrap">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/YSKlMCe3-cQ?rel=0&playsinline=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/SEwfgJ3SlPg?rel=0&playsinline=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- ── LETTURA ── -->
   <div class="card" data-salastudio-section="lettura" data-salastudio-readable="true">
-    <span class="card-label">Sensore Lettura</span>
+    <span class="card-tag">Lettura</span>
     <h2>La Privacy Online: perché è importante</h2>
-    <p>Leggi con attenzione il testo seguente. Il sistema verifica che tu abbia dedicato tempo sufficiente alla lettura.</p>
-    <div class="reading-block">
+    <p>Leggi con attenzione. Il sistema verifica che dedichi tempo sufficiente.</p>
+    <div class="reading">
       <p>Ogni volta che utilizzi un'applicazione o un social network, lasci dietro di te una serie di tracce digitali. Queste tracce, chiamate "impronte digitali", includono informazioni personali come il tuo nome, la tua posizione, le tue preferenze e persino le tue abitudini quotidiane.</p>
       <p>Le aziende raccolgono questi dati per diversi scopi: personalizzare la pubblicità, migliorare i propri servizi, ma talvolta anche per rivenderli a terze parti. Il Regolamento Generale sulla Protezione dei Dati (GDPR), in vigore nell'Unione Europea dal 2018, stabilisce regole precise su come le aziende possono raccogliere e utilizzare i dati personali dei cittadini.</p>
       <p>Tra i diritti fondamentali previsti dal GDPR ci sono: il diritto di accesso (sapere quali dati vengono raccolti), il diritto di rettifica (correggere dati errati), il diritto alla cancellazione (il cosiddetto "diritto all'oblio") e il diritto alla portabilità (trasferire i propri dati da un servizio all'altro).</p>
@@ -82,653 +59,420 @@
     </div>
   </div>
 
-  <!-- ── QUIZ ── -->
   <div class="card" data-salastudio-section="quiz">
-    <span class="card-label">Sensore Scelte</span>
+    <span class="card-tag">Scelte</span>
     <h2>Verifica di comprensione</h2>
-    <p>Rispondi alle domande basandoti sul testo appena letto. Non avere fretta: il sistema rileva selezioni troppo rapide.</p>
-
-    <div style="margin-bottom:1.2rem">
-      <p class="quiz-q">1. Cosa sono le "impronte digitali"?</p>
-      <button class="quiz-opt" data-salastudio-choice>A) I segni lasciati dalle dita sullo schermo del telefono</button>
-      <button class="quiz-opt" data-salastudio-choice>B) Le tracce di informazioni personali che lasciamo online</button>
-      <button class="quiz-opt" data-salastudio-choice>C) Un tipo di virus informatico che ruba le password</button>
-      <button class="quiz-opt" data-salastudio-choice>D) Il codice identificativo di ogni dispositivo elettronico</button>
+    <p>Rispondi senza fretta. Selezioni troppo rapide attivano il sensore.</p>
+    <div style="margin-bottom:1rem">
+      <p class="qq">1. Cosa sono le "impronte digitali"?</p>
+      <button class="qo" data-salastudio-choice>A) I segni lasciati dalle dita sullo schermo</button>
+      <button class="qo" data-salastudio-choice>B) Le tracce di informazioni personali lasciate online</button>
+      <button class="qo" data-salastudio-choice>C) Un tipo di virus informatico</button>
+      <button class="qo" data-salastudio-choice>D) Il codice identificativo di un dispositivo</button>
     </div>
-
-    <div style="margin-bottom:1.2rem">
-      <p class="quiz-q">2. Quale diritto permette di eliminare i propri dati da un servizio?</p>
-      <button class="quiz-opt" data-salastudio-choice>A) Diritto di accesso</button>
-      <button class="quiz-opt" data-salastudio-choice>B) Diritto alla portabilità</button>
-      <button class="quiz-opt" data-salastudio-choice>C) Diritto all'oblio</button>
-      <button class="quiz-opt" data-salastudio-choice>D) Diritto di rettifica</button>
+    <div style="margin-bottom:1rem">
+      <p class="qq">2. Quale diritto permette di eliminare i propri dati?</p>
+      <button class="qo" data-salastudio-choice>A) Diritto di accesso</button>
+      <button class="qo" data-salastudio-choice>B) Diritto alla portabilità</button>
+      <button class="qo" data-salastudio-choice>C) Diritto all'oblio</button>
+      <button class="qo" data-salastudio-choice>D) Diritto di rettifica</button>
     </div>
-
     <div>
-      <p class="quiz-q">3. Qual è una buona pratica per proteggere la propria privacy?</p>
-      <button class="quiz-opt" data-salastudio-choice>A) Usare la stessa password ovunque per non dimenticarla</button>
-      <button class="quiz-opt" data-salastudio-choice>B) Attivare l'autenticazione a due fattori</button>
-      <button class="quiz-opt" data-salastudio-choice>C) Condividere la password con un amico fidato</button>
-      <button class="quiz-opt" data-salastudio-choice>D) Disattivare gli aggiornamenti del sistema operativo</button>
+      <p class="qq">3. Qual è una buona pratica per la privacy?</p>
+      <button class="qo" data-salastudio-choice>A) Usare la stessa password ovunque</button>
+      <button class="qo" data-salastudio-choice>B) Attivare l'autenticazione a due fattori</button>
+      <button class="qo" data-salastudio-choice>C) Condividere la password con un amico</button>
+      <button class="qo" data-salastudio-choice>D) Disattivare gli aggiornamenti</button>
     </div>
   </div>
 
-  <!-- ── SCRITTURA ── -->
   <div class="card" data-salastudio-section="scrittura">
-    <span class="card-label">Sensore Velocità</span>
+    <span class="card-tag">Velocità</span>
     <h2>Scrittura guidata</h2>
-    <p>Scrivi un breve testo (almeno 60 parole) su questo tema: <strong>"Perché è importante proteggere i propri dati personali online?"</strong></p>
-    <p>Usa le informazioni del testo letto e aggiungi le tue riflessioni personali. Il sistema verifica che dedichi tempo sufficiente alla stesura.</p>
-    <textarea class="writing-area" placeholder="Inizia a scrivere qui..."></textarea>
-    <div class="writing-meta">
-      <span id="word-count">0 parole</span>
-      <button class="btn btn-sm" onclick="SalaStudio.sectionComplete('scrittura')">Consegna</button>
-    </div>
+    <p>Scrivi almeno 60 parole su: <strong>"Perché è importante proteggere i propri dati personali online?"</strong></p>
+    <textarea class="warea" placeholder="Inizia a scrivere qui..."></textarea>
+    <div class="wmeta"><span id="wc">0 parole</span><button class="btn btn-s" onclick="SalaStudio.sectionComplete('scrittura')">Consegna</button></div>
   </div>
 
-  <!-- ── CLICK AREA ── -->
   <div class="card" data-salastudio-section="click-test">
-    <span class="card-label">Sensore Click</span>
+    <span class="card-tag">Click</span>
     <h2>Esplora le risorse</h2>
-    <p>Naviga tra queste risorse con calma. Cliccando compulsivamente si attiva il sensore.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:.4rem">
-      <button class="btn btn-sm">Articolo 13 GDPR</button>
-      <button class="btn btn-sm">Phishing: cos'è</button>
-      <button class="btn btn-sm">Social engineering</button>
-      <button class="btn btn-sm">Password sicure</button>
-      <button class="btn btn-sm">Cookie e tracciamento</button>
-      <button class="btn btn-sm">Diritto all'oblio</button>
-      <button class="btn btn-sm">Cyberbullismo</button>
-      <button class="btn btn-sm">Sexting e rischi</button>
+    <p>Naviga con calma. Click compulsivi attivano il sensore.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:.3rem">
+      <button class="btn btn-s">Art. 13 GDPR</button><button class="btn btn-s">Phishing</button>
+      <button class="btn btn-s">Social engineering</button><button class="btn btn-s">Password sicure</button>
+      <button class="btn btn-s">Cookie</button><button class="btn btn-s">Diritto all'oblio</button>
+      <button class="btn btn-s">Cyberbullismo</button><button class="btn btn-s">Sexting e rischi</button>
     </div>
   </div>
 
-  <!-- ── CONSOLE ── -->
   <div class="card">
-    <h2>Console di debug</h2>
-    <div id="ss-console" class="console">SalaStudio — console attiva\n</div>
-    <div style="margin-top:.5rem;display:flex;gap:6px">
-      <button class="btn btn-sm" onclick="document.getElementById('ss-console').textContent=''">Pulisci</button>
-      <button class="btn btn-sm" onclick="location.reload()">Reset</button>
-      <button class="btn btn-sm" onclick="console.log(SalaStudio.getState())">Stato (F12)</button>
+    <h2>Console</h2>
+    <div id="ss-console" class="con">SalaStudio — console\n</div>
+    <div style="margin-top:.4rem;display:flex;gap:5px">
+      <button class="btn btn-s" onclick="document.getElementById('ss-console').textContent=''">Pulisci</button>
+      <button class="btn btn-s" onclick="location.reload()">Reset</button>
     </div>
   </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════
-     SALASTUDIO v2.1
-     Sistema di monitoraggio comportamentale studenti
-     Ecosistema SacraFamiglia education
-
-     Toolbar sidebar sinistra con 7 sensori
-     Noise meter stile Bottega (avg/1.2, barre storia, 3 fasce)
+     SALASTUDIO v2.2
+     Pannello monitoraggio laterale destro (stile Bottega)
+     7 sensori — Ecosistema SacraFamiglia education
      ════════════════════════════════════════════════════════ -->
 <script>
-const SalaStudio = (function() {
-  'use strict';
+const SalaStudio=(function(){'use strict';
 
-  /* ═══ STATE ═══ */
-  let _cfg={}, _viol=[], _t0=0, _locked=false, _ready=false;
-  let _clickTs=[], _keyTs=[], _choiceTs=[], _secEnter={}, _scrollTk={};
-  let _ytPlayers=[], _ytLast={};
+let _c={},_v=[],_t0=0,_lk=false,_ok=false;
+let _ckT=[],_kyT=[],_chT=[],_sE={},_scT={};
+let _ytP=[],_ytL={};
+let _actx=null,_anl=null,_mic=null,_nOn=false,_nRAF=null,_nAbv=0;
+let _nLvl=0,_nHist=[],_nAvg=0;
+let _panel=null,_ov=null,_sEls={};
 
-  // Noise (Bottega logic)
-  let _audioCtx=null, _analyser=null, _micStream=null;
-  let _noiseOn=false, _noiseRAF=null, _noiseAbove=0;
-  let _noiseLevel=0, _noiseHistory=[], _avgNoise=0;
+const D={
+  pin:'1234',minMin:15,vTime:3,vAbs:5,
+  det:{
+    compulsiveClick:{on:true,th:8,win:5000},
+    compulsiveKeys:{on:true,th:12,win:3000},
+    videoSkip:{on:true,skip:10,minW:.3},
+    speedSection:{on:true,minS:10},
+    unreadChoices:{on:true,th:3,win:6000},
+    skippedContent:{on:true,minR:5},
+    noise:{on:true,sus:10000}
+  },
+  onV:null,debug:false
+};
 
-  let _bar=null, _overlay=null, _sensorEls={};
+const S=[
+  {id:'compulsiveClick',lbl:'Click compulsivo'},
+  {id:'compulsiveKeys',lbl:'Digitazione compulsiva'},
+  {id:'videoSkip',lbl:'Video saltato'},
+  {id:'speedSection',lbl:'Troppo veloce'},
+  {id:'unreadChoices',lbl:'Scelte non lette'},
+  {id:'skippedContent',lbl:'Contenuto saltato'}
+];
 
-  /* ═══ DEFAULTS ═══ */
-  const DEF = {
-    pin:'1234', minTotalMin:15, vForTimeLock:3, vForAbsLock:5,
-    detections:{
-      compulsiveClick:{enabled:true,threshold:8,windowMs:5000},
-      compulsiveKeys:{enabled:true,threshold:12,windowMs:3000},
-      videoSkip:{enabled:true,skipSec:10,minWatch:0.3},
-      speedSection:{enabled:true,minSec:10},
-      unreadChoices:{enabled:true,threshold:3,windowMs:6000},
-      skippedContent:{enabled:true,minReadSec:5},
-      noise:{enabled:true,sustainMs:10000}
-    },
-    onViolation:null, debug:false
-  };
+const IC={
+  compulsiveClick:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2z"/><path d="M9 9L4.5 4.5"/></svg>',
+  compulsiveKeys:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/><path d="M7 16h10"/></svg>',
+  videoSkip:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,4 15,12 5,20"/><line x1="19" y1="5" x2="19" y2="19"/></svg>',
+  speedSection:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
+  unreadChoices:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
+  skippedContent:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/><line x1="5" y1="21" x2="19" y2="21"/></svg>',
+  noise:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+};
 
-  const SENS = [
-    {id:'compulsiveClick',label:'Click',icon:'click'},
-    {id:'compulsiveKeys',label:'Tastiera',icon:'keys'},
-    {id:'videoSkip',label:'Video',icon:'video'},
-    {id:'speedSection',label:'Velocità',icon:'speed'},
-    {id:'unreadChoices',label:'Scelte',icon:'eye'},
-    {id:'skippedContent',label:'Lettura',icon:'scroll'},
-    {id:'noise',label:'Silenzio',icon:'mic'}
-  ];
+const LB={compulsiveClick:'Click compulsivo',compulsiveKeys:'Digitazione compulsiva',videoSkip:'Video saltato',speedSection:'Troppo veloce',unreadChoices:'Scelte non lette',skippedContent:'Contenuto saltato',noise:'Rumore eccessivo'};
 
-  const ICO = {
-    click:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2z"/><path d="M9 9L4.5 4.5"/><path d="M7 13l-3.5 3.5"/><path d="M13 7l3.5-3.5"/></svg>',
-    keys:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/><path d="M7 16h10"/></svg>',
-    video:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,4 15,12 5,20"/><line x1="19" y1="5" x2="19" y2="19"/></svg>',
-    speed:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>',
-    eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>',
-    scroll:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/><line x1="5" y1="21" x2="19" y2="21"/></svg>',
-    mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>',
-    lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-    book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
-  };
+function _log(m){if(!_c.debug)return;console.log('[SS]',m);var e=document.getElementById('ss-console');if(e){e.textContent+='['+new Date().toLocaleTimeString('it-IT')+'] '+m+'\n';e.scrollTop=e.scrollHeight;}}
+function _mg(t,s){var o=Object.assign({},t);for(var k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=_mg(o[k]||{},s[k]);else o[k]=s[k];}return o;}
 
-  const LBL = {
-    compulsiveClick:'Click compulsivo',compulsiveKeys:'Digitazione compulsiva',
-    videoSkip:'Video saltato',speedSection:'Troppo veloce',
-    unreadChoices:'Scelte non lette',skippedContent:'Contenuto saltato',noise:'Rumore eccessivo'
-  };
+/* ═══ CSS ═══ */
+function _css(){var s=document.createElement('style');s.id='ss-css';s.textContent=`
+/* PANEL */
+#ss-panel{position:fixed;right:0;top:0;bottom:0;width:250px;background:#fff;border-left:1px solid #e0ddd6;z-index:99990;font-family:'DM Sans',system-ui,sans-serif;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;box-shadow:-2px 0 12px rgba(0,0,0,.04)}
 
-  /* ═══ HELPERS ═══ */
-  function _log(m){
-    if(!_cfg.debug)return;console.log('[SS]',m);
-    var el=document.getElementById('ss-console');
-    if(el){el.textContent+='['+new Date().toLocaleTimeString('it-IT')+'] '+m+'\n';el.scrollTop=el.scrollHeight;}
-  }
-  function _mg(t,s){var o=Object.assign({},t);for(var k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))o[k]=_mg(o[k]||{},s[k]);else o[k]=s[k];}return o;}
+/* Header */
+.ss-hdr{padding:14px 16px 12px;text-align:center;border-bottom:1px solid #e8e5de;flex-shrink:0}
+.ss-hdr h3{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#1a3a5c}
 
-  /* ═══ CSS ═══ */
-  function _css(){
-    var s=document.createElement('style');s.id='ss-css';
-    s.textContent=`
-/* ── SIDEBAR ── */
-#ss-bar{position:fixed;left:0;top:0;bottom:0;width:64px;background:linear-gradient(180deg,#1a2332 0%,#151d28 100%);display:flex;flex-direction:column;align-items:center;z-index:99990;font-family:'DM Sans',system-ui,sans-serif;box-shadow:3px 0 18px rgba(0,0,0,.2);transition:width .3s cubic-bezier(.4,0,.2,1);overflow:hidden;user-select:none}
-#ss-bar.ex{width:220px}
+/* Sections */
+.ss-sec{padding:14px 16px;border-bottom:1px solid #f0ede6}
+.ss-sec-t{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#8a9aa8;margin-bottom:8px}
 
-/* Logo */
-.ss-logo{width:100%;padding:12px 0 10px;display:flex;align-items:center;justify-content:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;flex-shrink:0}
-.ss-logo svg{width:22px;height:22px;color:#7eb8da;flex-shrink:0}
-.ss-logo-t{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7eb8da;white-space:nowrap;opacity:0;width:0;overflow:hidden;transition:opacity .2s,width .3s}
-#ss-bar.ex .ss-logo-t{opacity:1;width:auto}
+/* Noise chart */
+.ss-nchart-wrap{background:#f9f7f2;border-radius:6px;padding:8px 8px 4px;margin-bottom:8px}
+.ss-nchart{display:flex;align-items:flex-end;gap:2px;height:48px}
+.ss-nbar{flex:1;min-width:3px;border-radius:2px 2px 0 0;background:#e0ddd6;transition:height .1s,background .15s}
+.ss-nline{width:100%;height:1px;border-top:2px dashed #1B6D3F;margin-top:-1px}
+.ss-nstats{display:flex;align-items:flex-end;justify-content:space-between;margin-top:6px}
+.ss-npct{font-size:22px;font-weight:700;color:#1B6D3F;font-variant-numeric:tabular-nums;line-height:1;transition:color .3s}
+.ss-npct.amber{color:#D4A017}
+.ss-npct.red{color:#e74c3c}
+.ss-navg{font-size:10px;color:#8a9aa8;margin-top:2px}
+.ss-nbadge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:12px;background:rgba(27,109,63,.1);color:#1B6D3F;transition:all .3s}
+.ss-nbadge.amber{background:rgba(212,160,23,.12);color:#D4A017}
+.ss-nbadge.red{background:rgba(231,76,60,.1);color:#e74c3c}
+.ss-nbadge.off{background:#f0ede6;color:#aaa}
+
+/* Mic button */
+.ss-mic-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.ss-mic-btn{padding:5px 12px;border-radius:6px;border:1px solid #ddd;background:#fff;font-family:inherit;font-size:10px;font-weight:600;cursor:pointer;color:#666;transition:all .2s;display:flex;align-items:center;gap:5px}
+.ss-mic-btn svg{width:14px;height:14px}
+.ss-mic-btn:hover{border-color:#1B6D3F;color:#1B6D3F}
+.ss-mic-btn.on{background:#1B6D3F;color:#fff;border-color:#1B6D3F}
+
+/* Timer */
+.ss-timer{font-size:28px;font-weight:700;color:#1a3a5c;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:1px;line-height:1.2}
 
 /* Sensor rows */
-.ss-sensors{flex:1;width:100%;display:flex;flex-direction:column;padding:8px 0;gap:0;overflow-y:auto;overflow-x:hidden}
-.ss-row{display:flex;align-items:center;width:100%;padding:8px 0;position:relative;transition:background .15s;cursor:default}
-.ss-row:hover{background:rgba(255,255,255,.03)}
-.ss-row-ico{width:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
-.ss-row svg{width:18px;height:18px;color:#4a6070;transition:color .3s,filter .3s}
-.ss-row.ok svg{color:#7eb8da}
-.ss-row.warn svg{color:#d4a017;filter:drop-shadow(0 0 3px rgba(212,160,23,.3))}
-.ss-row.alert svg{color:#e74c3c;filter:drop-shadow(0 0 4px rgba(231,76,60,.35));animation:ss-pulse 1.2s ease infinite}
-@keyframes ss-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.ss-sr{display:flex;align-items:center;gap:8px;padding:6px 0;position:relative}
+.ss-sr-ico{width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ss-sr-ico svg{width:16px;height:16px;color:#8a9aa8;transition:color .3s}
+.ss-sr-lbl{flex:1;font-size:11.5px;color:#4a5568}
+.ss-sr-ind{width:8px;height:8px;border-radius:50%;background:#27ae60;flex-shrink:0;transition:all .3s}
+.ss-sr-ind.warn{background:#D4A017;box-shadow:0 0 4px rgba(212,160,23,.4)}
+.ss-sr-ind.alert{background:#e74c3c;box-shadow:0 0 5px rgba(231,76,60,.4);animation:ss-blink 1s ease infinite}
+.ss-sr-cnt{font-size:10px;font-weight:700;color:#e74c3c;min-width:14px;text-align:center;opacity:0;transition:opacity .2s}
+.ss-sr-cnt.vis{opacity:1}
+@keyframes ss-blink{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* Badge */
-.ss-badge{position:absolute;top:-1px;right:8px;background:#e74c3c;color:#fff;font-size:8px;font-weight:700;min-width:14px;height:14px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 3px;opacity:0;transform:scale(.3);transition:all .25s cubic-bezier(.34,1.56,.64,1)}
-.ss-badge.vis{opacity:1;transform:scale(1)}
+/* alert row highlight */
+.ss-sr.active .ss-sr-ico svg{color:#e74c3c}
+.ss-sr.active .ss-sr-lbl{color:#c0392b;font-weight:600}
 
-/* Label */
-.ss-row-lbl{font-size:11px;color:#7a8f9e;white-space:nowrap;overflow:hidden;opacity:0;transition:opacity .2s .05s;padding-right:8px}
-#ss-bar.ex .ss-row-lbl{opacity:1}
+/* Behavior */
+.ss-beh{font-size:12px;color:#8a9aa8;font-style:italic}
+.ss-beh.warn{color:#D4A017;font-style:normal;font-weight:600}
+.ss-beh.danger{color:#e74c3c;font-style:normal;font-weight:600}
 
-/* Tooltip (collapsed only) */
-.ss-tip{position:absolute;left:70px;top:50%;transform:translateY(-50%);background:#243040;color:#c0d4e0;font-size:10px;padding:3px 8px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s;z-index:99991;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-.ss-tip::before{content:'';position:absolute;left:-4px;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:#243040}
-#ss-bar:not(.ex) .ss-row:hover .ss-tip{opacity:1}
+/* Footer */
+.ss-foot{padding:12px 16px;margin-top:auto;border-top:1px solid #f0ede6;text-align:center;flex-shrink:0}
+.ss-foot-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#27ae60;vertical-align:middle;margin-right:6px;transition:all .3s}
+.ss-foot-dot.w{background:#D4A017}
+.ss-foot-dot.d{background:#e74c3c}
+.ss-foot-txt{font-size:9px;color:#8a9aa8;letter-spacing:1px;text-transform:uppercase}
 
-/* Separator */
-.ss-sep{height:1px;background:rgba(255,255,255,.05);margin:4px 14px;flex-shrink:0}
-
-/* ── NOISE PANEL (expanded view, Bottega style) ── */
-.ss-noise-panel{width:100%;padding:0 14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s,opacity .2s,padding .3s}
-#ss-bar.ex .ss-noise-panel{max-height:180px;opacity:1;padding:6px 14px 10px}
-.ss-noise-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#546a7b;margin-bottom:6px}
-.ss-noise-chart{display:flex;align-items:flex-end;gap:2px;height:40px;background:rgba(255,255,255,.03);border-radius:4px;padding:4px 4px 0;margin-bottom:6px}
-.ss-noise-bar{width:100%;min-width:2px;border-radius:1px 1px 0 0;transition:height .1s,background .2s}
-.ss-noise-stats{display:flex;align-items:center;justify-content:space-between}
-.ss-noise-pct{font-size:16px;font-weight:700;color:#7eb8da;font-variant-numeric:tabular-nums;transition:color .3s}
-.ss-noise-pct.amber{color:#d4a017}
-.ss-noise-pct.red{color:#e74c3c}
-.ss-noise-avg{font-size:9px;color:#546a7b}
-.ss-noise-badge{font-size:8.5px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(39,174,96,.15);color:#27ae60;transition:all .3s}
-.ss-noise-badge.amber{background:rgba(212,160,23,.15);color:#d4a017}
-.ss-noise-badge.red{background:rgba(231,76,60,.15);color:#e74c3c}
-
-/* ── SESSION TIMER ── */
-.ss-timer-wrap{width:100%;padding:0 14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s,opacity .2s}
-#ss-bar.ex .ss-timer-wrap{max-height:60px;opacity:1;padding:6px 14px}
-.ss-timer-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#546a7b;margin-bottom:2px}
-.ss-timer{font-size:20px;font-weight:700;color:#ccd6dd;font-variant-numeric:tabular-nums;letter-spacing:1px}
-
-/* ── BEHAVIOR SUMMARY ── */
-.ss-behav-wrap{width:100%;padding:0 14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s,opacity .2s}
-#ss-bar.ex .ss-behav-wrap{max-height:80px;opacity:1;padding:6px 14px}
-.ss-behav-title{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#546a7b;margin-bottom:2px}
-.ss-behav-text{font-size:11px;color:#7a8f9e;font-style:italic}
-.ss-behav-text.warn{color:#d4a017;font-style:normal;font-weight:500}
-
-/* ── FOOTER ── */
-.ss-ft{width:100%;padding:10px 0 8px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;flex-shrink:0}
-.ss-dot{width:8px;height:8px;border-radius:50%;background:#27ae60;margin-bottom:2px;transition:all .3s}
-.ss-dot.w{background:#d4a017;box-shadow:0 0 6px rgba(212,160,23,.35)}
-.ss-dot.d{background:#e74c3c;box-shadow:0 0 6px rgba(231,76,60,.35)}
-.ss-ft-t{font-size:7px;color:#4a6070;letter-spacing:.5px;text-transform:uppercase}
-
-/* mic activate button */
-.ss-mic-btn{display:flex;align-items:center;justify-content:center;width:36px;height:20px;border-radius:10px;border:1px solid rgba(126,184,218,.3);background:transparent;cursor:pointer;margin-top:2px;transition:all .2s}
-.ss-mic-btn:hover{border-color:rgba(126,184,218,.6)}
-.ss-mic-btn.on{background:rgba(39,174,96,.2);border-color:rgba(39,174,96,.4)}
-.ss-mic-btn svg{width:12px;height:12px;color:#546a7b}
-.ss-mic-btn.on svg{color:#27ae60}
-
-/* ── OVERLAY ── */
-#ss-ov{position:fixed;inset:0;z-index:99999;background:rgba(18,22,28,.95);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:ss-fi .4s ease}
+/* OVERLAY */
+#ss-ov{position:fixed;inset:0;z-index:99999;background:rgba(18,22,28,.95);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:ss-fi .4s}
 @keyframes ss-fi{0%{opacity:0}100%{opacity:1}}
-.ss-lc{background:#fff;border-radius:14px;padding:2rem;max-width:400px;width:88%;text-align:center;font-family:'DM Sans',system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.ss-lc{background:#fff;border-radius:14px;padding:2rem;max-width:390px;width:88%;text-align:center;font-family:'DM Sans',system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .ss-lc svg{width:44px;height:44px;color:#c0392b;margin-bottom:.8rem}
-.ss-lc h2{font-size:1.1rem;color:#1a1a1a;margin-bottom:.35rem}
-.ss-lc p{font-size:.82rem;color:#666;margin-bottom:.9rem;line-height:1.5}
-.ss-lc-sum{text-align:left;background:#fdf2f2;border-radius:8px;padding:.6rem .8rem;margin-bottom:.9rem;font-size:.76rem;color:#7a1a1a;line-height:1.8}
-.ss-lc input{width:100%;padding:.55rem;border:1.5px solid #ddd;border-radius:8px;text-align:center;font-family:inherit;font-size:1rem;letter-spacing:.4em;margin-bottom:.6rem;outline:none;transition:border-color .2s}
+.ss-lc h2{font-size:1.1rem;color:#1a1a1a;margin-bottom:.3rem}
+.ss-lc p{font-size:.8rem;color:#666;margin-bottom:.8rem;line-height:1.5}
+.ss-lc-s{text-align:left;background:#fdf2f2;border-radius:8px;padding:.5rem .7rem;margin-bottom:.8rem;font-size:.74rem;color:#7a1a1a;line-height:1.8}
+.ss-lc input{width:100%;padding:.5rem;border:1.5px solid #ddd;border-radius:8px;text-align:center;font-family:inherit;font-size:1rem;letter-spacing:.4em;margin-bottom:.5rem;outline:none;transition:border-color .2s}
 .ss-lc input:focus{border-color:#1a3a5c}
 .ss-lc input.bad{border-color:#c0392b;animation:ss-sh .4s}
-.ss-lc button{width:100%;padding:.55rem;border:none;border-radius:8px;background:#1a3a5c;color:#fff;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s}
+.ss-lc button{width:100%;padding:.5rem;border:none;border-radius:8px;background:#1a3a5c;color:#fff;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:background .2s}
 .ss-lc button:hover{background:#14304d}
-@keyframes ss-sh{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
-`;
-    document.head.appendChild(s);
-  }
+@keyframes ss-sh{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+`;document.head.appendChild(s);}
 
-  /* ═══ BUILD SIDEBAR ═══ */
-  function _buildBar(){
-    _bar=document.createElement('div');_bar.id='ss-bar';
+/* ═══ BUILD PANEL ═══ */
+function _build(){
+  _panel=document.createElement('div');_panel.id='ss-panel';
 
-    // Logo
-    var logo=document.createElement('div');logo.className='ss-logo';
-    logo.innerHTML=ICO.book+'<span class="ss-logo-t">SalaStudio</span>';
-    logo.onclick=function(){_bar.classList.toggle('ex');};
-    _bar.appendChild(logo);
+  // Header
+  _panel.innerHTML=`
+<div class="ss-hdr"><h3>SalaStudio</h3></div>
 
-    var wrap=document.createElement('div');wrap.className='ss-sensors';
+<div class="ss-sec" id="ss-noise-sec">
+  <div class="ss-sec-t">Livello Rumore</div>
+  <div class="ss-nchart-wrap">
+    <div class="ss-nchart" id="ss-nchart"></div>
+    <div class="ss-nline"></div>
+  </div>
+  <div class="ss-nstats">
+    <div><span class="ss-npct" id="ss-npct">--%</span><div class="ss-navg" id="ss-navg">Media: --</div></div>
+    <span class="ss-nbadge off" id="ss-nbadge">Off</span>
+  </div>
+  <div class="ss-mic-row">
+    <button class="ss-mic-btn" id="ss-mic-btn" onclick="SalaStudio.toggleNoise()">
+      ${IC.noise} <span id="ss-mic-txt">Attiva</span>
+    </button>
+  </div>
+</div>
 
-    SENS.forEach(function(s,i){
-      if(!_cfg.detections[s.id]||!_cfg.detections[s.id].enabled) return;
+<div class="ss-sec">
+  <div class="ss-sec-t">Sessione</div>
+  <div class="ss-timer" id="ss-timer">00:00</div>
+</div>
 
-      // Separator before noise
-      if(s.id==='noise'){
-        var sep=document.createElement('div');sep.className='ss-sep';wrap.appendChild(sep);
-      }
+<div class="ss-sec" id="ss-sens-sec">
+  <div class="ss-sec-t">Comportamento</div>
+  <div id="ss-sens-list"></div>
+  <div style="margin-top:8px"><span class="ss-beh" id="ss-beh">Nessuna segnalazione</span></div>
+</div>
 
-      var row=document.createElement('div');
-      row.className='ss-row ok';row.setAttribute('data-sid',s.id);
+<div class="ss-foot">
+  <span class="ss-foot-dot" id="ss-fdot"></span>
+  <span class="ss-foot-txt" id="ss-ftxt">attivo</span>
+</div>`;
 
-      var inner='<div class="ss-row-ico">'+ICO[s.icon]+'<span class="ss-badge" data-bg="'+s.id+'">0</span></div>';
-      inner+='<span class="ss-row-lbl">'+s.label+'</span>';
-      inner+='<span class="ss-tip">'+s.label+'</span>';
+  document.body.appendChild(_panel);
 
-      // Mic activate toggle (collapsed view)
-      if(s.id==='noise'){
-        inner+='<button class="ss-mic-btn" id="ss-mic-toggle" title="Attiva microfono" onclick="event.stopPropagation();SalaStudio.toggleNoise()">'+
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/></svg></button>';
-      }
+  // Noise chart bars
+  var ch=document.getElementById('ss-nchart');
+  for(var i=0;i<20;i++){var b=document.createElement('div');b.className='ss-nbar';b.style.height='3px';ch.appendChild(b);}
 
-      row.innerHTML=inner;
-      wrap.appendChild(row);
-      _sensorEls[s.id]=row;
+  // Sensor rows
+  var list=document.getElementById('ss-sens-list');
+  S.forEach(function(s){
+    if(!_c.det[s.id]||!_c.det[s.id].on)return;
+    var row=document.createElement('div');row.className='ss-sr';row.id='ssr-'+s.id;
+    row.innerHTML='<div class="ss-sr-ico">'+IC[s.id]+'</div><span class="ss-sr-lbl">'+s.lbl+'</span><span class="ss-sr-cnt" id="ssc-'+s.id+'">0</span><span class="ss-sr-ind" id="ssi-'+s.id+'"></span>';
+    list.appendChild(row);
+    _sEls[s.id]=row;
+  });
 
-      // Separator after compulsiveKeys
-      if(s.id==='compulsiveKeys'){
-        var sep2=document.createElement('div');sep2.className='ss-sep';wrap.appendChild(sep2);
-      }
-      // Separator after skippedContent
-      if(s.id==='skippedContent'){
-        // noise separator handled above
-      }
-    });
+  // Timer
+  setInterval(function(){
+    if(!_ok)return;
+    var s=Math.floor((Date.now()-_t0)/1000);
+    document.getElementById('ss-timer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  },1000);
+}
 
-    // Noise panel (Bottega-style, visible when expanded)
-    var nPanel=document.createElement('div');
-    nPanel.className='ss-noise-panel';
-    nPanel.innerHTML=`
-      <div class="ss-noise-title">Livello Rumore</div>
-      <div class="ss-noise-chart" id="ss-nchart"></div>
-      <div class="ss-noise-stats">
-        <div>
-          <span class="ss-noise-pct" id="ss-npct">--%</span><br>
-          <span class="ss-noise-avg" id="ss-navg">Media: --</span>
-        </div>
-        <span class="ss-noise-badge" id="ss-nbadge">Off</span>
-      </div>
-    `;
-    wrap.appendChild(nPanel);
-
-    // Timer
-    var timerW=document.createElement('div');
-    timerW.className='ss-timer-wrap';
-    timerW.innerHTML='<div class="ss-sep" style="margin:0 0 6px"></div><div class="ss-timer-title">Sessione</div><div class="ss-timer" id="ss-timer">00:00</div>';
-    wrap.appendChild(timerW);
-
-    // Behavior summary
-    var behW=document.createElement('div');
-    behW.className='ss-behav-wrap';
-    behW.innerHTML='<div class="ss-sep" style="margin:0 0 6px"></div><div class="ss-behav-title">Comportamento</div><div class="ss-behav-text" id="ss-behav">Nessuna segnalazione</div>';
-    wrap.appendChild(behW);
-
-    _bar.appendChild(wrap);
-
-    // Footer
-    var ft=document.createElement('div');ft.className='ss-ft';
-    ft.innerHTML='<div class="ss-dot" id="ss-dot"></div><span class="ss-ft-t" id="ss-ft-t">attivo</span>';
-    _bar.appendChild(ft);
-
-    document.body.appendChild(_bar);
-
-    // Init noise chart bars
-    var chart=document.getElementById('ss-nchart');
-    for(var i=0;i<20;i++){
-      var b=document.createElement('div');b.className='ss-noise-bar';
-      b.style.height='2px';b.style.background='#2a3a4a';
-      chart.appendChild(b);
-    }
-
-    // Timer interval
-    setInterval(function(){
-      if(!_ready)return;
-      var s=Math.floor((Date.now()-_t0)/1000);
-      var m=String(Math.floor(s/60)).padStart(2,'0');
-      var sec=String(s%60).padStart(2,'0');
-      document.getElementById('ss-timer').textContent=m+':'+sec;
-    },1000);
-  }
-
-  /* ═══ UPDATE SIDEBAR ═══ */
-  function _upd(){
-    var counts={};
-    _viol.forEach(function(v){counts[v.type]=(counts[v.type]||0)+1;});
-
-    SENS.forEach(function(s){
-      var el=_sensorEls[s.id];if(!el)return;
-      var bg=el.querySelector('[data-bg]');
-      var c=counts[s.id]||0;
-      if(c>0){
-        bg.textContent=c;bg.classList.add('vis');
-        el.className='ss-row alert';el.setAttribute('data-sid',s.id);
-      } else {
-        bg.classList.remove('vis');
-        el.className='ss-row ok';el.setAttribute('data-sid',s.id);
-      }
-    });
-
-    var n=_viol.length;
-    var dot=document.getElementById('ss-dot'),txt=document.getElementById('ss-ft-t');
-    var beh=document.getElementById('ss-behav');
-    if(n===0){
-      dot.className='ss-dot';txt.textContent='attivo';
-      beh.className='ss-behav-text';beh.textContent='Nessuna segnalazione';
-    } else if(n<_cfg.vForTimeLock){
-      dot.className='ss-dot w';txt.textContent=n+'/'+_cfg.vForAbsLock;
-      beh.className='ss-behav-text warn';beh.textContent=n+' segnalazion'+(n===1?'e':'i');
+/* ═══ UPDATE ═══ */
+function _upd(){
+  var ct={};_v.forEach(function(v){ct[v.type]=(ct[v.type]||0)+1;});
+  S.forEach(function(s){
+    var row=_sEls[s.id];if(!row)return;
+    var ind=document.getElementById('ssi-'+s.id);
+    var cnt=document.getElementById('ssc-'+s.id);
+    var n=ct[s.id]||0;
+    if(n>0){
+      row.className='ss-sr active';
+      ind.className='ss-sr-ind alert';
+      cnt.textContent=n;cnt.classList.add('vis');
     } else {
-      dot.className='ss-dot d';txt.textContent=n+'/'+_cfg.vForAbsLock;
-      beh.className='ss-behav-text warn';beh.textContent=n+' segnalazioni — attenzione!';
+      row.className='ss-sr';
+      ind.className='ss-sr-ind';
+      cnt.classList.remove('vis');
     }
-  }
+  });
+  var tot=_v.length;
+  var beh=document.getElementById('ss-beh');
+  var dot=document.getElementById('ss-fdot'),ft=document.getElementById('ss-ftxt');
+  if(tot===0){beh.className='ss-beh';beh.textContent='Nessuna segnalazione';dot.className='ss-foot-dot';ft.textContent='attivo';}
+  else if(tot<_c.vTime){beh.className='ss-beh warn';beh.textContent=tot+' segnalazion'+(tot===1?'e':'i');dot.className='ss-foot-dot w';ft.textContent=tot+'/'+_c.vAbs;}
+  else{beh.className='ss-beh danger';beh.textContent=tot+' segnalazioni — attenzione!';dot.className='ss-foot-dot d';ft.textContent=tot+'/'+_c.vAbs;}
+}
 
-  /* ═══ VIOLATIONS ═══ */
-  function _add(type){
-    if(_locked)return;
-    _viol.push({type:type,time:Date.now()});
-    _log('VIOLAZIONE: '+LBL[type]+' ('+_viol.length+')');
-    _upd();
-    if(_cfg.onViolation)_cfg.onViolation(type,_viol.length);
-    _chk();
-  }
-  function _chk(){
-    var el=(Date.now()-_t0)/60000,n=_viol.length;
-    if(n>=_cfg.vForAbsLock) _lock(n+' violazioni. Attività sospesa.');
-    else if(el<_cfg.minTotalMin&&n>=_cfg.vForTimeLock) _lock(n+' violazioni in '+Math.floor(el)+' min.');
-  }
-  function _lock(msg){
-    if(_locked)return;_locked=true;_log('BLOCCO: '+msg);
-    var counts={};_viol.forEach(function(v){counts[v.type]=(counts[v.type]||0)+1;});
-    var sum='';Object.keys(counts).forEach(function(t){sum+=LBL[t]+': '+counts[t]+'<br>';});
-    _overlay=document.createElement('div');_overlay.id='ss-ov';
-    _overlay.innerHTML='<div class="ss-lc">'+ICO.lock+'<h2>Attività Sospesa</h2><p>'+msg+'</p><div class="ss-lc-sum">'+sum+'</div><input type="password" id="ss-pin" placeholder="PIN docente" maxlength="8" autocomplete="off"><button id="ss-pb">Sblocca</button></div>';
-    document.body.appendChild(_overlay);
-    var inp=document.getElementById('ss-pin');
-    document.getElementById('ss-pb').onclick=function(){_unlk(inp);};
-    inp.onkeydown=function(e){if(e.key==='Enter')_unlk(inp);};
-    inp.focus();
-  }
-  function _unlk(inp){
-    if(inp.value===_cfg.pin){
-      _locked=false;_viol=[];_t0=Date.now();
-      if(_overlay){_overlay.remove();_overlay=null;}
-      _upd();_log('SBLOCCATO');
-    } else {inp.classList.add('bad');inp.value='';setTimeout(function(){inp.classList.remove('bad');},400);}
-  }
+/* ═══ VIOLATIONS ═══ */
+function _add(t){if(_lk)return;_v.push({type:t,time:Date.now()});_log('VIOLAZIONE: '+LB[t]+' ('+_v.length+')');_upd();if(_c.onV)_c.onV(t,_v.length);_chk();}
+function _chk(){var e=(Date.now()-_t0)/60000,n=_v.length;if(n>=_c.vAbs)_lock(n+' violazioni. Attività sospesa.');else if(e<_c.minMin&&n>=_c.vTime)_lock(n+' violazioni in '+Math.floor(e)+' min.');}
+function _lock(msg){
+  if(_lk)return;_lk=true;_log('BLOCCO: '+msg);
+  var ct={};_v.forEach(function(v){ct[v.type]=(ct[v.type]||0)+1;});
+  var sm='';Object.keys(ct).forEach(function(t){sm+=LB[t]+': '+ct[t]+'<br>';});
+  _ov=document.createElement('div');_ov.id='ss-ov';
+  _ov.innerHTML='<div class="ss-lc">'+IC.lock+'<h2>Attività Sospesa</h2><p>'+msg+'</p><div class="ss-lc-s">'+sm+'</div><input type="password" id="ss-pin" placeholder="PIN docente" maxlength="8" autocomplete="off"><button id="ss-pb">Sblocca</button></div>';
+  document.body.appendChild(_ov);
+  var inp=document.getElementById('ss-pin');
+  document.getElementById('ss-pb').onclick=function(){_ulk(inp);};
+  inp.onkeydown=function(e){if(e.key==='Enter')_ulk(inp);};inp.focus();
+}
+function _ulk(i){if(i.value===_c.pin){_lk=false;_v=[];_t0=Date.now();if(_ov){_ov.remove();_ov=null;}_upd();_log('SBLOCCATO');}else{i.classList.add('bad');i.value='';setTimeout(function(){i.classList.remove('bad');},400);}}
 
-  /* ═══════════════════════════════════════
-     DETECTIONS
-     ═══════════════════════════════════════ */
+/* ═══ DETECTIONS ═══ */
+function _d1(){var c=_c.det.compulsiveClick;if(!c.on)return;document.addEventListener('click',function(){if(_lk)return;var n=Date.now();_ckT.push(n);_ckT=_ckT.filter(function(t){return n-t<c.win;});if(_ckT.length>=c.th){_add('compulsiveClick');_ckT=[];}},true);_log('Sensore: Click ('+c.th+'/'+c.win+'ms)');}
 
-  // 1. Click
-  function _d1(){
-    var c=_cfg.detections.compulsiveClick;if(!c.enabled)return;
-    document.addEventListener('click',function(){
-      if(_locked)return;var now=Date.now();_clickTs.push(now);
-      _clickTs=_clickTs.filter(function(t){return now-t<c.windowMs;});
-      if(_clickTs.length>=c.threshold){_add('compulsiveClick');_clickTs=[];}
-    },true);
-    _log('Sensore: Click ('+c.threshold+'/'+c.windowMs+'ms)');
-  }
+function _d2(){var c=_c.det.compulsiveKeys;if(!c.on)return;document.addEventListener('keydown',function(e){if(_lk)return;var tg=e.target.tagName;if(tg==='INPUT'||tg==='TEXTAREA'||e.target.isContentEditable)return;var n=Date.now();_kyT.push(n);_kyT=_kyT.filter(function(t){return n-t<c.win;});if(_kyT.length>=c.th){_add('compulsiveKeys');_kyT=[];}},true);_log('Sensore: Tastiera ('+c.th+'/'+c.win+'ms)');}
 
-  // 2. Keys
-  function _d2(){
-    var c=_cfg.detections.compulsiveKeys;if(!c.enabled)return;
-    document.addEventListener('keydown',function(e){
-      if(_locked)return;var tag=e.target.tagName;
-      if(tag==='INPUT'||tag==='TEXTAREA'||e.target.isContentEditable)return;
-      var now=Date.now();_keyTs.push(now);
-      _keyTs=_keyTs.filter(function(t){return now-t<c.windowMs;});
-      if(_keyTs.length>=c.threshold){_add('compulsiveKeys');_keyTs=[];}
-    },true);
-    _log('Sensore: Tastiera ('+c.threshold+'/'+c.windowMs+'ms)');
-  }
+function _d3(){if(!_c.det.videoSkip.on)return;_log('Sensore: Video (registerYT)');}
+function _wyt(p){var c=_c.det.videoSkip,id='y'+Math.random().toString(36).substr(2,4);_ytL[id]=0;var d=0;var iv=setInterval(function(){if(_lk)return;try{var ct=p.getCurrentTime();if(!d)d=p.getDuration();if(_ytL[id]>0&&ct-_ytL[id]>c.skip)_add('videoSkip');_ytL[id]=ct;var st=p.getPlayerState();if(st===0||st===-1){if(d>0&&ct/d<c.minW&&ct>2)_add('videoSkip');clearInterval(iv);}}catch(e){}},2000);}
 
-  // 3. Video
-  function _d3(){if(!_cfg.detections.videoSkip.enabled)return;_log('Sensore: Video (registerYT)');}
-  function _wyt(player){
-    var c=_cfg.detections.videoSkip,id='y'+Math.random().toString(36).substr(2,4);
-    _ytLast[id]=0;var dur=0;
-    var p=setInterval(function(){
-      if(_locked)return;
-      try{
-        var ct=player.getCurrentTime();if(!dur)dur=player.getDuration();
-        if(_ytLast[id]>0&&ct-_ytLast[id]>c.skipSec)_add('videoSkip');
-        _ytLast[id]=ct;
-        var st=player.getPlayerState();
-        if(st===0||st===-1){if(dur>0&&ct/dur<c.minWatch&&ct>2)_add('videoSkip');clearInterval(p);}
-      }catch(e){}
-    },2000);
-  }
+function _d4(){if(!_c.det.speedSection.on)return;document.querySelectorAll('[data-salastudio-section]').forEach(function(el){var id=el.getAttribute('data-salastudio-section');new IntersectionObserver(function(ent){ent.forEach(function(e){if(e.isIntersecting&&!_sE[id])_sE[id]=Date.now();});},{threshold:.3}).observe(el);});_log('Sensore: Velocità (min '+_c.det.speedSection.minS+'s)');}
 
-  // 4. Speed
-  function _d4(){
-    if(!_cfg.detections.speedSection.enabled)return;
-    document.querySelectorAll('[data-salastudio-section]').forEach(function(el){
-      var id=el.getAttribute('data-salastudio-section');
-      new IntersectionObserver(function(ent){
-        ent.forEach(function(e){if(e.isIntersecting&&!_secEnter[id])_secEnter[id]=Date.now();});
-      },{threshold:0.3}).observe(el);
+function _d5(){var c=_c.det.unreadChoices;if(!c.on)return;document.addEventListener('click',function(e){if(_lk||!e.target.closest('[data-salastudio-choice]'))return;var n=Date.now();_chT.push(n);_chT=_chT.filter(function(t){return n-t<c.win;});if(_chT.length>=c.th){_add('unreadChoices');_chT=[];}},true);_log('Sensore: Scelte ('+c.th+'/'+c.win+'ms)');}
+
+function _d6(){var c=_c.det.skippedContent;if(!c.on)return;document.querySelectorAll('[data-salastudio-readable]').forEach(function(el){var id=el.getAttribute('data-salastudio-section')||('r'+Math.random().toString(36).substr(2,3));_scT[id]={en:0,dn:false};new IntersectionObserver(function(ent){ent.forEach(function(e){if(e.isIntersecting&&!_scT[id].en)_scT[id].en=Date.now();});},{threshold:.1}).observe(el);var sn=document.createElement('div');sn.style.height='1px';el.appendChild(sn);new IntersectionObserver(function(ent){ent.forEach(function(e){if(e.isIntersecting&&_scT[id].en&&!_scT[id].dn){if((Date.now()-_scT[id].en)/1000<c.minR)_add('skippedContent');_scT[id].dn=true;}});},{threshold:1}).observe(sn);});_log('Sensore: Lettura (min '+c.minR+'s)');}
+
+function _d7(){if(!_c.det.noise.on)return;_log('Sensore: Silenzio (sustain '+_c.det.noise.sus+'ms)');}
+
+/* ═══ NOISE (Bottega) ═══ */
+function _micOn(){
+  if(_nOn||!navigator.mediaDevices)return;
+  navigator.mediaDevices.getUserMedia({audio:true,video:false}).then(function(stream){
+    _mic=stream;_actx=new(window.AudioContext||window.webkitAudioContext)();
+    _actx.resume().then(function(){
+      _anl=_actx.createAnalyser();_anl.fftSize=512;_anl.smoothingTimeConstant=0.8;
+      _actx.createMediaStreamSource(stream).connect(_anl);
+      _nOn=true;_nAbv=0;_nHist=[];_nAvg=0;
+      var b=document.getElementById('ss-mic-btn');if(b)b.classList.add('on');
+      var t=document.getElementById('ss-mic-txt');if(t)t.textContent='Disattiva';
+      var bg=document.getElementById('ss-nbadge');if(bg){bg.textContent='Silenzio';bg.className='ss-nbadge';}
+      _log('Microfono attivo');_nPoll();
     });
-    _log('Sensore: Velocità (min '+_cfg.detections.speedSection.minSec+'s)');
-  }
+  }).catch(function(e){_log('Mic negato: '+e.message);});
+}
 
-  // 5. Choices
-  function _d5(){
-    var c=_cfg.detections.unreadChoices;if(!c.enabled)return;
-    document.addEventListener('click',function(e){
-      if(_locked||!e.target.closest('[data-salastudio-choice]'))return;
-      var now=Date.now();_choiceTs.push(now);
-      _choiceTs=_choiceTs.filter(function(t){return now-t<c.windowMs;});
-      if(_choiceTs.length>=c.threshold){_add('unreadChoices');_choiceTs=[];}
-    },true);
-    _log('Sensore: Scelte ('+c.threshold+'/'+c.windowMs+'ms)');
-  }
+function _nPoll(){
+  if(!_nOn)return;
+  var data=new Uint8Array(_anl.frequencyBinCount);_anl.getByteFrequencyData(data);
+  var avg=data.reduce(function(a,b){return a+b;},0)/data.length;
+  var pct=Math.min(100,avg/1.2);
+  _nLvl=Math.round(pct);
 
-  // 6. Scroll
-  function _d6(){
-    var c=_cfg.detections.skippedContent;if(!c.enabled)return;
-    document.querySelectorAll('[data-salastudio-readable]').forEach(function(el){
-      var id=el.getAttribute('data-salastudio-section')||('r'+Math.random().toString(36).substr(2,3));
-      _scrollTk[id]={entered:0,done:false};
-      new IntersectionObserver(function(ent){
-        ent.forEach(function(e){if(e.isIntersecting&&!_scrollTk[id].entered)_scrollTk[id].entered=Date.now();});
-      },{threshold:0.1}).observe(el);
-      var sn=document.createElement('div');sn.style.height='1px';el.appendChild(sn);
-      new IntersectionObserver(function(ent){
-        ent.forEach(function(e){
-          if(e.isIntersecting&&_scrollTk[id].entered&&!_scrollTk[id].done){
-            if((Date.now()-_scrollTk[id].entered)/1000<c.minReadSec)_add('skippedContent');
-            _scrollTk[id].done=true;
-          }
-        });
-      },{threshold:1.0}).observe(sn);
-    });
-    _log('Sensore: Lettura (min '+c.minReadSec+'s)');
-  }
+  _nHist.push(pct);if(_nHist.length>600)_nHist.shift();
+  _nAvg=Math.round(_nHist.reduce(function(a,b){return a+b;},0)/_nHist.length);
 
-  // 7. Noise (Bottega logic: avg/1.2, 3 color bands, history chart)
-  function _d7(){if(!_cfg.detections.noise.enabled)return;_log('Sensore: Silenzio (soglia 66%, sustain '+_cfg.detections.noise.sustainMs+'ms)');}
+  var col=_nLvl<33?'green':_nLvl<66?'amber':'red';
+  var hex={green:'#1B6D3F',amber:'#D4A017',red:'#e74c3c'};
 
-  function _noiseOn2(){
-    if(_noiseOn||!navigator.mediaDevices)return;
-    navigator.mediaDevices.getUserMedia({audio:true,video:false}).then(function(stream){
-      _micStream=stream;
-      _audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-      _audioCtx.resume().then(function(){
-        _analyser=_audioCtx.createAnalyser();_analyser.fftSize=512;_analyser.smoothingTimeConstant=0.8;
-        _audioCtx.createMediaStreamSource(stream).connect(_analyser);
-        _noiseOn=true;_noiseAbove=0;_noiseHistory=[];_avgNoise=0;
-        var btn=document.getElementById('ss-mic-toggle');if(btn)btn.classList.add('on');
-        var badge=document.getElementById('ss-nbadge');if(badge){badge.textContent='Silenzio';badge.className='ss-noise-badge';}
-        _log('Microfono attivo');
-        _noisePoll();
-      });
-    }).catch(function(e){_log('Mic negato: '+e.message);});
-  }
-
-  function _noisePoll(){
-    if(!_noiseOn)return;
-    var data=new Uint8Array(_analyser.frequencyBinCount);
-    _analyser.getByteFrequencyData(data);
-    var avg=data.reduce(function(a,b){return a+b;},0)/data.length;
-    var pct=Math.min(100,avg/1.2);
-    _noiseLevel=Math.round(pct);
-
-    // History
-    _noiseHistory.push(pct);
-    if(_noiseHistory.length>600)_noiseHistory.shift();
-    _avgNoise=Math.round(_noiseHistory.reduce(function(a,b){return a+b;},0)/_noiseHistory.length);
-
-    // Color band
-    var color=_noiseLevel<33?'green':_noiseLevel<66?'amber':'red';
-    var hexMap={green:'#27ae60',amber:'#d4a017',red:'#e74c3c'};
-
-    // Update chart bars (last 20 readings, sampled every ~5 frames)
-    var chart=document.getElementById('ss-nchart');
-    if(chart&&_noiseHistory.length%5===0){
-      var bars=chart.children;
-      var hist=_noiseHistory.slice(-20*5);// last 100 readings, sample every 5
+  // Chart bars (sample every 5 frames)
+  if(_nHist.length%5===0){
+    var ch=document.getElementById('ss-nchart');if(ch){
+      var bars=ch.children;
       for(var i=0;i<20;i++){
-        var idx=Math.min(i*5,hist.length-1);
-        var val=idx>=0?hist[hist.length-1-((19-i)*5)]||0:0;
-        var h=Math.max(2,val/100*36);
-        var bc=val<33?hexMap.green:val<66?hexMap.amber:hexMap.red;
+        var sIdx=_nHist.length-((20-i)*5);
+        var val=sIdx>=0?_nHist[sIdx]:0;
+        var h=Math.max(3,val/100*44);
+        var bc=val<33?hex.green:val<66?hex.amber:hex.red;
         if(bars[i]){bars[i].style.height=h+'px';bars[i].style.background=bc;}
       }
     }
-
-    // Stats
-    var pctEl=document.getElementById('ss-npct');
-    if(pctEl){pctEl.textContent=_noiseLevel+'%';pctEl.className='ss-noise-pct'+(color!=='green'?' '+color:'');}
-    var avgEl=document.getElementById('ss-navg');
-    if(avgEl)avgEl.textContent='Media: '+_avgNoise+'%';
-    var badge=document.getElementById('ss-nbadge');
-    if(badge){
-      badge.textContent=color==='green'?'Silenzio':color==='amber'?'Attenzione':'Troppo forte';
-      badge.className='ss-noise-badge'+(color!=='green'?' '+color:'');
-    }
-
-    // Sensor row color
-    var nel=_sensorEls['noise'];
-    if(nel){
-      var hasViol=_viol.some(function(v){return v.type==='noise';});
-      if(color==='red'){nel.className='ss-row alert';nel.setAttribute('data-sid','noise');}
-      else if(color==='amber'||hasViol){nel.className='ss-row warn';nel.setAttribute('data-sid','noise');}
-      else{nel.className='ss-row ok';nel.setAttribute('data-sid','noise');}
-    }
-
-    // Violation threshold
-    if(pct>66){
-      if(!_noiseAbove)_noiseAbove=Date.now();
-      if(Date.now()-_noiseAbove>_cfg.detections.noise.sustainMs){
-        if(!_locked){_add('noise');_noiseAbove=Date.now();}
-      }
-    } else {_noiseAbove=0;}
-
-    _noiseRAF=requestAnimationFrame(_noisePoll);
   }
 
-  function _noiseOff2(){
-    _noiseOn=false;
-    if(_noiseRAF)cancelAnimationFrame(_noiseRAF);
-    if(_micStream)_micStream.getTracks().forEach(function(t){t.stop();});
-    if(_audioCtx)_audioCtx.close();
-    _audioCtx=null;_analyser=null;_micStream=null;
-    var btn=document.getElementById('ss-mic-toggle');if(btn)btn.classList.remove('on');
-    var badge=document.getElementById('ss-nbadge');if(badge){badge.textContent='Off';badge.className='ss-noise-badge';}
-    var pctEl=document.getElementById('ss-npct');if(pctEl){pctEl.textContent='--%';pctEl.className='ss-noise-pct';}
-    // Reset chart
-    var chart=document.getElementById('ss-nchart');
-    if(chart){for(var i=0;i<chart.children.length;i++){chart.children[i].style.height='2px';chart.children[i].style.background='#2a3a4a';}}
-    _log('Microfono off');
-  }
+  // Stats
+  var pe=document.getElementById('ss-npct');if(pe){pe.textContent=_nLvl+'%';pe.className='ss-npct'+(col!=='green'?' '+col:'');}
+  var ae=document.getElementById('ss-navg');if(ae)ae.textContent='Media: '+_nAvg+'%';
+  var bg=document.getElementById('ss-nbadge');
+  if(bg){bg.textContent=col==='green'?'Silenzio':col==='amber'?'Attenzione':'Troppo forte';bg.className='ss-nbadge'+(col!=='green'?' '+col:'');}
 
-  /* ═══ PUBLIC API ═══ */
-  return {
-    version:'2.1.0',
-    init:function(cfg){
-      if(_ready)return;_cfg=_mg(DEF,cfg||{});_t0=Date.now();_ready=true;
-      _css();_buildBar();_d1();_d2();_d3();_d4();_d5();_d6();_d7();
-      _log('SalaStudio v2.1 — '+Object.keys(_cfg.detections).filter(function(k){return _cfg.detections[k].enabled;}).length+'/7 sensori');
-    },
-    sectionEnter:function(id){if(_ready){_secEnter[id]=Date.now();}},
-    sectionComplete:function(id){
-      if(!_ready||_locked)return;var c=_cfg.detections.speedSection;if(!c.enabled)return;
-      var t0=_secEnter[id];if(!t0)return;
-      var s=(Date.now()-t0)/1000;
-      if(s<c.minSec)_add('speedSection');else _log('Sezione "'+id+'" OK ('+s.toFixed(1)+'s)');
-    },
-    registerYT:function(p){if(_ready)_wyt(p);},
-    startNoise:function(){if(_ready)_noiseOn2();},
-    stopNoise:function(){if(_ready)_noiseOff2();},
-    toggleNoise:function(){if(_noiseOn)_noiseOff2();else _noiseOn2();},
-    report:function(type){if(_ready&&LBL[type])_add(type);},
-    getState:function(){return{violations:_viol.slice(),locked:_locked,elapsed:_ready?Math.floor((Date.now()-_t0)/1000):0,noiseLevel:_noiseLevel,avgNoise:_avgNoise};}
-  };
+  // Violation
+  if(pct>66){if(!_nAbv)_nAbv=Date.now();if(Date.now()-_nAbv>_c.det.noise.sus){if(!_lk){_add('noise');_nAbv=Date.now();}}}
+  else{_nAbv=0;}
+
+  _nRAF=requestAnimationFrame(_nPoll);
+}
+
+function _micOff(){
+  _nOn=false;if(_nRAF)cancelAnimationFrame(_nRAF);
+  if(_mic)_mic.getTracks().forEach(function(t){t.stop();});
+  if(_actx)_actx.close();_actx=null;_anl=null;_mic=null;
+  var b=document.getElementById('ss-mic-btn');if(b)b.classList.remove('on');
+  var t=document.getElementById('ss-mic-txt');if(t)t.textContent='Attiva';
+  var bg=document.getElementById('ss-nbadge');if(bg){bg.textContent='Off';bg.className='ss-nbadge off';}
+  var pe=document.getElementById('ss-npct');if(pe){pe.textContent='--%';pe.className='ss-npct';}
+  var ae=document.getElementById('ss-navg');if(ae)ae.textContent='Media: --';
+  var ch=document.getElementById('ss-nchart');if(ch)for(var i=0;i<ch.children.length;i++){ch.children[i].style.height='3px';ch.children[i].style.background='#e0ddd6';}
+  _log('Microfono off');
+}
+
+/* ═══ API ═══ */
+return{
+  version:'2.2.0',
+  init:function(cfg){
+    if(_ok)return;_c=_mg(D,cfg||{});_t0=Date.now();_ok=true;
+    _css();_build();_d1();_d2();_d3();_d4();_d5();_d6();_d7();
+    _log('SalaStudio v2.2 — '+Object.keys(_c.det).filter(function(k){return _c.det[k].on;}).length+'/7 sensori');
+  },
+  sectionEnter:function(id){if(_ok){_sE[id]=Date.now();}},
+  sectionComplete:function(id){if(!_ok||_lk)return;var c=_c.det.speedSection;if(!c.on)return;var t=_sE[id];if(!t)return;var s=(Date.now()-t)/1000;if(s<c.minS)_add('speedSection');else _log('Sezione "'+id+'" OK ('+s.toFixed(1)+'s)');},
+  registerYT:function(p){if(_ok)_wyt(p);},
+  startNoise:function(){if(_ok)_micOn();},
+  stopNoise:function(){if(_ok)_micOff();},
+  toggleNoise:function(){if(_nOn)_micOff();else _micOn();},
+  report:function(type){if(_ok&&LB[type])_add(type);},
+  getState:function(){return{violations:_v.slice(),locked:_lk,elapsed:_ok?Math.floor((Date.now()-_t0)/1000):0,noiseLevel:_nLvl,avgNoise:_nAvg};}
+};
 })();
 
-/* ═══ INIT ═══ */
-SalaStudio.init({ pin:'1234', minTotalMin:15, debug:true });
+SalaStudio.init({pin:'1234',minMin:15,debug:true});
 
-/* ═══ WORD COUNTER ═══ */
-document.querySelector('.writing-area').addEventListener('input',function(){
+document.querySelector('.warea').addEventListener('input',function(){
   var w=this.value.trim().split(/\s+/).filter(function(x){return x.length>0;}).length;
-  document.getElementById('word-count').textContent=w+' parol'+(w===1?'a':'e');
+  document.getElementById('wc').textContent=w+' parol'+(w===1?'a':'e');
 });
-
-/* ═══ QUIZ SELECTION ═══ */
-document.querySelectorAll('.quiz-opt').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var siblings=this.parentElement.querySelectorAll('.quiz-opt');
-    siblings.forEach(function(s){s.classList.remove('selected');});
-    this.classList.add('selected');
-  });
-});
+document.querySelectorAll('.qo').forEach(function(b){b.addEventListener('click',function(){
+  this.parentElement.querySelectorAll('.qo').forEach(function(s){s.classList.remove('sel');});this.classList.add('sel');
+});});
 </script>
 </body>
 </html>
